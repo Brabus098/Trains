@@ -1,22 +1,6 @@
-# Xcode
-.DS_Store
-*/build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
-
-# Swift Package Manager
-.build/
+Trains/Resources/Assets.xcassets/MocCompaniesLabels/TransCargoBig.imageset/Contents.json
+Trains/Resources/Assets.xcassets/MocCompaniesLabels/TransCargoBig.imageset/Снимок экрана 2025-12-11 в 17.41.45.png
+Trains/Resources/Assets.xcassets/Other/Elipse.imageset/Contents.json
+Trains/Resources/Assets.xcassets/Other/Elipse.imageset/Ellipse 1.png
+Trains/StoriesFlow/StoriesLent/View/ProgressBar.swift
+Trains.xcodeproj/project.xcworkspace
