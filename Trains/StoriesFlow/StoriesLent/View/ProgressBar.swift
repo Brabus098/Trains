@@ -25,7 +25,7 @@ struct ProgressBar: View {
                     .foregroundColor(.blueUniversal)
             }
             .mask {
-                MaskView(numberOfSections: numberOfSections)
+               MaskView(numberOfSections: numberOfSections)
             }
         }
     }
@@ -48,6 +48,6 @@ private struct MaskFragmentView: View {
         RoundedRectangle(cornerRadius: .progressBarCornerRadius)
             .fixedSize(horizontal: false, vertical: true)
             .frame(height: .progressBarHeight)
-            .foregroundStyle(.white)
+            .foregroundStyle(.red)
     }
 }
