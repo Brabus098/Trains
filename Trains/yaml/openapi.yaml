@@ -9,6 +9,94 @@ tags:
 - name: Список ближайших станций
   description: Список ближайших станций
 paths:
+  /v3.0/carrier/:
+    get:
+      tags:
+      - carrier
+      summary: Информация о перевозчике
+      operationId: carrier
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: code
+        in: query
+        description: code
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierResponse'
+                
+  /v3.0/nearest_settlement/:
+    get:
+      tags:
+      - nearestSettlement
+      summary: Ближайший город
+      operationId:
+        nearestSettlement
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: lat
+        in: query
+        description: широта
+        required: true
+        schema:
+          type: number
+      - name: lng
+        in: query
+        description: долгота
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearestSettlement'
+  
+  /v3.0/copyright/:
+    get:
+      tags:
+      - copyright
+      summary: Копирайт
+      operationId: copyright
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: json или xml
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CopyrightResponse'
+      
   /v3.0/nearest_stations/:
     get:
       tags:
@@ -61,6 +149,88 @@ paths:
                 $ref: '#/components/schemas/Stations'
 components:
   schemas:
+    CarrierResponse:
+      type: object
+      properties:
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+    Carrier:
+      type: object
+      properties:
+        code:
+          type: integer
+        contacts:
+          type: string
+        url:
+          type: string
+        title:
+          type: string
+        phone:
+          type: string
+        codes:
+          $ref: '#/components/schemas/Codes'
+        address:
+          type: string
+        logo:
+          type: string
+        email:
+          type: string
+        offices:
+          type: array
+          items:
+            type: string
+    Codes:
+        type: object
+        properties:
+          icao:
+            type: string
+          sirena:
+            type: string
+          iata:
+            type: string
+    NearestSettlement:
+      type: object
+      properties:
+        distance:
+          type: integer
+        code:
+          type: string
+        title:
+          type: string
+        popular_title:
+          type: string
+        short_title:
+          type: string
+        lat:
+          type: integer
+        lng:
+          type: integer
+        type:
+          type: string
+    CopyrightResponse:
+      type: object
+      properties:
+        copyright:
+          $ref: '#/components/schemas/Copyright'
+    Copyright:
+      type: object
+      properties:
+        logo_vm:
+          type: string
+        url:
+          type: string
+        logo_vd:
+          type: string
+        logo_hy:
+          type: string
+        logo_hd:
+          type: string
+        logo_vy:
+          type: string
+        text:
+          type: string
+        logo_hm:
+          type: string
     Stations:
       type: object
       properties:
