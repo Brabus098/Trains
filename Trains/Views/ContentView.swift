@@ -4,6 +4,8 @@ import SwiftUI
 import OpenAPIURLSession
 
 struct ContentView: View {
+    
+    var apikey = "11758c37-0b0f-43a1-9378-a522f04edfae"
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -13,17 +15,17 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
-            //testScheduleResponse()
-            // testFetchStations()
-            // testFetchCopyright()
-            //testFetchNearestStations()
-            // testFetchCarrier()
-            // testFetchSchedualBetweenStations()
+            testScheduleResponse()
+            testFetchStations()
+            testFetchCopyright()
+            testFetchNearestStations()
+            testFetchCarrier()
+            testFetchSchedualBetweenStations()
             testRouteStations()
-            // testAllStation()
+            testAllStation()
         }
     }
-    //Список рейсов по станции
+    //Список рейсов по станции ok
     func testScheduleResponse() {
         Task {
             do {
@@ -32,7 +34,7 @@ struct ContentView: View {
                     transport: URLSessionTransport()
                 )
                 
-                let service = ScheduleService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = ScheduleService(client: client, apikey: apikey)
                 
                 print("Fetching stations...")
                 
@@ -45,14 +47,14 @@ struct ContentView: View {
         }
     }
     // Список всех станций ok
-    func testAllStation(){
+    func testAllStation() {
         Task {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
                     transport: URLSessionTransport()
                 )
-                let service = AllStationsResponseService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = AllStationsResponseService(client: client, apikey: apikey)
                 
                 print("Fetching stations...")
                 let stations = try await service.getAllStations()
@@ -71,7 +73,7 @@ struct ContentView: View {
                     serverURL: try Servers.Server1.url(),
                     transport: URLSessionTransport()
                 )
-                let service = RouteStationsService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = RouteStationsService(client: client, apikey: apikey)
                 
                 
                 print("Fetching stations...")
@@ -91,7 +93,7 @@ struct ContentView: View {
                     serverURL: try Servers.Server1.url(),
                     transport: URLSessionTransport()
                 )
-                let service = SchedualBetweenStationsService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = SchedualBetweenStationsService(client: client, apikey: apikey)
                 print("Fetching stations...")
                 let stations = try await service.getSchedualBetweenStations(from: "s2000001", to: "s9602494")
                 
@@ -109,7 +111,7 @@ struct ContentView: View {
                     serverURL: try Servers.Server1.url(),
                     transport: URLSessionTransport()
                 )
-                let service = CarrierService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = CarrierService(client: client, apikey: apikey)
                 print("Fetching stations...")
                 let stations = try await service.getCarrier(code: "680", system: nil)
                 
@@ -129,13 +131,13 @@ struct ContentView: View {
                 )
                 let service = NearestStationsService(
                     client: client,
-                    apikey: "11758c37-0b0f-43a1-9378-a522f04edfae"
+                    apikey: apikey
                 )
                 print("Fetching stations...")
                 let stations = try await service.getNearestStations(
-                    lat: 59.864177, // Пример координат
-                    lng: 30.319163, // Пример координат
-                    distance: 50    // Пример дистанции
+                    lat: 59.864177,
+                    lng: 30.319163,
+                    distance: 50
                 )
                 print("Successfully fetched stations: \(stations)")
             } catch {
@@ -151,7 +153,7 @@ struct ContentView: View {
                     serverURL: try Servers.Server1.url(),
                     transport: URLSessionTransport()
                 )
-                let service = GetCopyrightService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = GetCopyrightService(client: client, apikey: apikey)
                 print("Fetching stations...")
                 let baners = try await service.getCopyright()
                 print("Successfully fetched stations: \(baners)")
@@ -172,7 +174,7 @@ struct ContentView: View {
                 )
                 
                 // 2. Создаём экземпляр нашего сервиса, передавая ему клиент и API-ключ
-                let service = NearestSettlementService(client: client, apikey: "11758c37-0b0f-43a1-9378-a522f04edfae")
+                let service = NearestSettlementService(client: client, apikey: apikey)
                 
                 // 3. Вызываем метод сервиса
                 print("Fetching stations...")
