@@ -14,6 +14,7 @@ final class AllStationsResponseService: AllStationsResponseProtocol {
     
     private let client: Client
     private let apikey: String
+    private let jsonDecoder = JSONDecoder()
     
     init(client: Client, apikey: String) {
         self.client = client
@@ -26,9 +27,9 @@ final class AllStationsResponseService: AllStationsResponseProtocol {
         let responseBody = try response.ok.body.text_html_charset_utf_hyphen_8
         
         let limit = 50 * 1024 * 1024
-        var fullData = try await Data(collecting: responseBody, upTo: limit)
+        let fullData = try await Data(collecting: responseBody, upTo: limit)
         
-        let allStations = try JSONDecoder().decode(AllStationsResponse.self, from: fullData)
+        let allStations = try jsonDecoder.decode(AllStationsResponse.self, from: fullData)
         print(String(data: fullData.prefix(15000), encoding: .utf8) ?? "")
         
         return allStations
