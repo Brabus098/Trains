@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		E73553482EAD5CC500FBBAD9 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = E73553472EAD5CC500FBBAD9 /* OpenAPIRuntime */; };
 		E735534B2EAD5D0500FBBAD9 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = E735534A2EAD5D0500FBBAD9 /* OpenAPIURLSession */; };
+		E7448DF02EB38AAA007D55FE /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = E7448DEE2EB38AA2007D55FE /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E7448DEE2EB38AA2007D55FE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .gitignore; sourceTree = "<group>"; };
 		E7A1029E2EA2C6420025F112 /* Trains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 		E7A102952EA2C6420025F112 = {
 			isa = PBXGroup;
 			children = (
+				E7448DEE2EB38AA2007D55FE /* .gitignore */,
 				E7A102A02EA2C6420025F112 /* Trains */,
 				E7A1029F2EA2C6420025F112 /* Products */,
 			);
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7448DF02EB38AAA007D55FE /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
