@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct TrainsApp: App {
+    
+    @State private var isLoading = true
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Group {
+                ContentView()
+            }
         }
     }
 }
