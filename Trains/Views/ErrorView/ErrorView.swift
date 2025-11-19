@@ -4,12 +4,13 @@ import SwiftUI
 
 struct ErrorView: View {
     
-    let imageHeight: CGFloat = 300
+    let imageHeight: CGFloat = 230
     let imageName: String
     let text: String
     
     var body: some View {
         VStack {
+            Spacer()
             Image(imageName)
                 .resizable()
                 .scaledToFit()
@@ -17,6 +18,7 @@ struct ErrorView: View {
                 .padding()
             Text(text)
                 .font(.custom("SFPro-Bold", size: 24))
+            Spacer()
         }
     }
 }
