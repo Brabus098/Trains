@@ -5,7 +5,7 @@ import SwiftUI
 struct ChooseTime: View {
     @Bindable var viewModel: CompanyListViewModel
     let timeOfDay: TimeOfDay
-    @State var imageState: String = "CheckBoxOff"
+    @State var imageState: String = "OffCheckBox"
     
     var body: some View {
         switch timeOfDay {
@@ -51,7 +51,7 @@ struct ImageState:View {
     
     var body: some View {
         VStack {
-            isOn ? Image("CheckBoxOn") :  Image("CheckBoxOff")
+            isOn ? Image("CheckBoxOn") :  Image("OffCheckBox")
         }
         .onTapGesture {
             switch timeOfDay {
