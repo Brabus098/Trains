@@ -6,14 +6,18 @@ import Observation
 @Observable class CompanyListViewModel {
     
     var model: CompanyListModel
-    var companies: [Company]?
-    var filterCompanies: [Company]?
+    var companies: [CompanyModel]?
+    var filterCompanies: [CompanyModel]?
     var visibleButtonStatus = false
     
-    var morningButtonState: TimeOfDirection = TimeOfDirection(status: false, time: .morning)
-    var dayButtonState: TimeOfDirection = TimeOfDirection(status: false, time: .day)
-    var afternoonButtonState: TimeOfDirection = TimeOfDirection(status: false, time: .afternoon)
-    var nightButtonState: TimeOfDirection = TimeOfDirection(status: false, time: .night)
+    var morningButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
+                                                                        time: .morning)
+    var dayButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
+                                                                    time: .day)
+    var afternoonButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
+                                                                          time: .afternoon)
+    var nightButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
+                                                                      time: .night)
     
     var yesRadioButtonState = false
     var noRadioButtonState = false
@@ -22,7 +26,7 @@ import Observation
         self.model = CompanyListModel()
     }
     
-    func getCompany(from: SelectedDirection, to: SelectedDirection) {
+    func getCompany(from: DirectionModel, to: DirectionModel) {
         companies = model.returnCompany(from: from, to: to)
         filterCompanies = companies
     }

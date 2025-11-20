@@ -22,7 +22,3 @@ struct ErrorView: View {
         }
     }
 }
-//
-//#Preview {
-//    ErrorView(imageName: "NoInternetError", text: "Нет интернета")
-//}

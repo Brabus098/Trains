@@ -1,4 +1,3 @@
-//
 //  TrainsApp.swift
 
 import SwiftUI

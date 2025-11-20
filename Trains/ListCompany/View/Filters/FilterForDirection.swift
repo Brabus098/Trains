@@ -14,10 +14,10 @@ struct FilterForDirection: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical)
             Group {
-                ChooseTime(viewModel: viewModel, timeOfDay: .morning)
-                ChooseTime(viewModel: viewModel, timeOfDay: .day)
-                ChooseTime(viewModel: viewModel, timeOfDay: .afternoon)
-                ChooseTime(viewModel: viewModel, timeOfDay: .night)
+                ChooseTimeView(viewModel: viewModel, timeOfDay: .morning)
+                ChooseTimeView(viewModel: viewModel, timeOfDay: .day)
+                ChooseTimeView(viewModel: viewModel, timeOfDay: .afternoon)
+                ChooseTimeView(viewModel: viewModel, timeOfDay: .night)
             }
             .padding(.vertical)
             Text("Показываем варианты с пересадками")
@@ -29,13 +29,13 @@ struct FilterForDirection: View {
                     Text("Да")
                         .font(.custom("SFPro-Regula", size: 17))
                     Spacer()
-                    NeedSwapTransport(isOn: viewModel.yesRadioButtonState, viewModel: viewModel, needSwap: .yes)
+                    NeedSwapTransportView(isOn: viewModel.yesRadioButtonState, viewModel: viewModel, needSwap: .yes)
                 }
                 HStack {
                     Text("Нет")
                         .font(.custom("SFPro-Regula", size: 17))
                     Spacer()
-                    NeedSwapTransport(isOn: viewModel.noRadioButtonState, viewModel: viewModel, needSwap: .no)
+                    NeedSwapTransportView(isOn: viewModel.noRadioButtonState, viewModel: viewModel, needSwap: .no)
                 }
             }
             .padding(.vertical)

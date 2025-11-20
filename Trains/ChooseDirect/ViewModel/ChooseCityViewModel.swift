@@ -8,11 +8,11 @@ import Observation
     var selectedCity: String?
     var selectedStation: String?
     
-    var directionFrom: SelectedDirection?
+    var directionFrom: DirectionModel?
     var finalDirectionFrom: String?
     
     var finalDirectionTo: String?
-    var directionTo: SelectedDirection?
+    var directionTo: DirectionModel?
     
     var directionType: DirectionType?
     
@@ -49,13 +49,13 @@ import Observation
         
         if direction == .to {
             finalDirectionTo = city + "(" + station + ")"
-            directionTo = SelectedDirection(city: city,
+            directionTo = DirectionModel(city: city,
                                             trainStations: station,
                                             direction: .to)
             
         } else if direction == .from {
             finalDirectionFrom = city + "(" + station + ")"
-            directionFrom = SelectedDirection(city: city,
+            directionFrom = DirectionModel(city: city,
                                               trainStations: station,
                                               direction: .from)
         }

@@ -12,11 +12,11 @@ struct CustomTabView: View {
             Group {
                 switch selectedTab {
                 case 0:
-                    MainScreen(hideTabBar: $hideTabBar)
+                    MainScreenView(hideTabBar: $hideTabBar)
                 case 1:
-                    SettingsScreen()
+                    SettingsScreenView()
                 default:
-                    MainScreen(hideTabBar: $hideTabBar)
+                    MainScreenView(hideTabBar: $hideTabBar)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
