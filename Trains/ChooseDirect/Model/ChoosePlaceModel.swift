@@ -6,3 +6,4 @@ struct ChoosePlaceModel: Hashable, Identifiable {
     var city: String
     var trainStations: [String]
 }
+
