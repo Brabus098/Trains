@@ -2,25 +2,6 @@
 
 import Foundation
 
-struct ChoosePlaceModel: Hashable, Identifiable {
-    var id = UUID()
-    var city: String
-    var trainStations: [String]
-}
-
-struct SelectedDirection {
-    var city: String
-    var trainStations: String
-    var direction: DirectionType
-}
-
-// Тип направления
-enum DirectionType {
-    case from  // Откуда
-    case to    // Куда
-    case none
-}
-
 struct ChooseCityModel {
     
     private var cityList = [
