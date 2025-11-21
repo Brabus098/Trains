@@ -13,4 +13,5 @@ struct CompanyModel: Identifiable {
     var needSwapStation: Bool // true
     var swapStation: String? // If needSwapStation == true swapStation = Кострома
     var timeOfDay: TimeOfDayType
+    var detailInfo: CompanyInfoModel
 }

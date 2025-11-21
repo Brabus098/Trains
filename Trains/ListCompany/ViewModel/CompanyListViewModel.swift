@@ -9,6 +9,7 @@ import Observation
     var companies: [CompanyModel]?
     var filterCompanies: [CompanyModel]?
     var visibleButtonStatus = false
+    var selectedCompanyDetail: CompanyModel?
     
     var morningButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
                                                                         time: .morning)
