@@ -104,7 +104,7 @@ struct MainScreenView: View {
                         Color.background
                             .ignoresSafeArea()
                         VStack(spacing: 0) {
-                            CustomNavigation(title: "Пользовательское соглашение") {
+                            CustomNavigation(title: "Информация о перевозчикее") {
                                 navigationPath.removeLast()
                             }
                             .background(Color.background)
