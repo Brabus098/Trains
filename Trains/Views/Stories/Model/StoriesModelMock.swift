@@ -9,7 +9,7 @@ extension StoriesModel {
     
     static let mocksLentDictionary: [Int : [String]] = [1 : ["worker1", "worker2"],
                                                         2 : ["girlInTrain1", "girlInTrain2"],
-                                                        3 : ["mainStopTrain", "peopleAtTrain"],
+                                                        3 : ["MainStopTrain", "peopleAtTrain"],
                                                         4 : ["trainPlace1", "trainPlace2"],
                                                         5: ["movingTrain1", "movingTrain2"]]
 }
