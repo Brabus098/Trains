@@ -3,25 +3,27 @@
 import SwiftUI
 
 struct CustomTabView: View {
+    
     @State private var selectedTab: Int = 0
     @State private var hideTabBar = false
-    
+    @State var storiesViewModel = StoriesViewModel()
+
     var body: some View {
         ZStack {
             // Контент экранов
             Group {
                 switch selectedTab {
                 case 0:
-                    MainScreenView(hideTabBar: $hideTabBar)
+                    MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel)
                 case 1:
-                    SettingsScreenView()
+                    SettingsScreenView(hideTabBar: $hideTabBar)
                 default:
-                    MainScreenView(hideTabBar: $hideTabBar)
+                    MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
-            .ignoresSafeArea()
+            //.ignoresSafeArea()
             
             // Таббар
             if !hideTabBar {
