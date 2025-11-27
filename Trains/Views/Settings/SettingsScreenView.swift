@@ -8,38 +8,15 @@ struct SettingsScreenView: View {
     @Binding var hideTabBar: Bool
     
     var body: some View {
-        @Bindable var themeManager = themeManager
         
         NavigationStack(path: $navigationPath) {
             ZStack {
                 Color.background
                     .ignoresSafeArea()
                 VStack {
-                    VStack(spacing: 30) {
-                        HStack {
-                            Text("Темная тема")
-                                .font(.custom("SFPro-Regula", size: 17))
-                            Spacer()
-                            Toggle("", isOn: $themeManager.isDarkMode)
-                        }
-                        HStack {
-                            Text("Пользовательское соглашение")
-                                .font(.custom("SFPro-Regula", size: 17))
-                            Spacer()
-                            Button(action: {
-                                navigationPath.append("UserAgreement")
-                            }) {
-                                Image("NextButton")
-                            }
-                        }
-                    }
+                    settings
                     Spacer()
-                    VStack(spacing: 10) {
-                        Text("Приложение использует API «Яндекс.Расписания»")
-                        Text("Версия 1.0 (beta)")
-                    }
-                    .font(.custom("SFPro-Regula", size: 12))
-                    .padding(.bottom, 60)
+                    footer
                 }
                 .padding()
                 .navigationDestination(for: String.self) { route in
@@ -48,7 +25,7 @@ struct SettingsScreenView: View {
                             Color.background
                                 .ignoresSafeArea()
                             VStack{
-                                CustomNavigation(title: "Информация о компании") {
+                                CustomNavigation(title: "Пользовательское соглашение") {
                                     navigationPath.removeLast()
                                 }
                                 .background(Color.background)
@@ -64,6 +41,39 @@ struct SettingsScreenView: View {
         .onChange(of: navigationPath) { oldValue, newValue in
             withAnimation(.easeInOut(duration: 0.25)) {
                 hideTabBar = !newValue.isEmpty
+            }
+        }
+    }
+    
+    private var footer: some View {
+        
+        VStack(spacing: 10) {
+            Text("Приложение использует API «Яндекс.Расписания»")
+            Text("Версия 1.0 (beta)")
+        }
+        .font(.custom("SFPro-Regula", size: 12))
+        .padding(.bottom, 60)
+    }
+    
+    private var settings: some View {
+        @Bindable var themeManager = themeManager
+
+        return VStack(spacing: 30) {
+            HStack {
+                Text("Темная тема")
+                    .font(.custom("SFPro-Regula", size: 17))
+                Spacer()
+                Toggle("", isOn: $themeManager.isDarkMode)
+            }
+            HStack {
+                Text("Пользовательское соглашение")
+                    .font(.custom("SFPro-Regula", size: 17))
+                Spacer()
+                Button(action: {
+                    navigationPath.append("UserAgreement")
+                }) {
+                    Image("NextButton")
+                }
             }
         }
     }

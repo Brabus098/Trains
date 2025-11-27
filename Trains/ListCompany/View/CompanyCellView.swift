@@ -5,33 +5,27 @@ import SwiftUI
 struct CompanyCellView : View {
     
     @Binding var navigationPath: NavigationPath
+    var viewModel: CompanyListViewModel
     
-    let image: String
-    let nameOfCompany: String
-    let needSwapStation: Bool
-    let swapStation: String?
-    let date: String
-    let allTimePath: String
-    let timeToStart: String
-    let timeToOver: String
+    let companyModel: CompanyModel
     
     var body: some View {
         VStack {
             HStack {
-                Image(image)
+                Image(companyModel.image)
                     .frame(width:38, height: 38)
                 VStack {
                     HStack {
-                        Text(nameOfCompany)
+                        Text(companyModel.companyName)
                             .font(.custom("SFPro-Regula", size: 17))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(date)
+                        Text(companyModel.date)
                             .font(.custom("SFPro-Regula", size: 12))
                     }
                     .foregroundColor(.blackUniversal)
                     
-                    if needSwapStation && swapStation != nil {
-                        Text("C пересадкой в " + (swapStation ?? ""))
+                    if companyModel.needSwapStation && companyModel.swapStation != nil {
+                        Text("C пересадкой в " + (companyModel.swapStation ?? ""))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundStyle(.red)
                             .font(.custom("SFPro-Regula", size: 12))
@@ -44,17 +38,17 @@ struct CompanyCellView : View {
             .padding(.top, 12)
             .padding(.bottom, 4)
             HStack {
-                Text(timeToStart)
+                Text(companyModel.timeToStart)
                     .font(.custom("SFPro-Regula", size: 17))
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
                     .frame(height: 1)
-                Text(allTimePath)
+                Text(companyModel.allTimePath)
                     .font(.custom("SFPro-Regula", size: 12))
                 Rectangle()
                     .fill(Color.gray.opacity(0.3))
                     .frame(height: 1)
-                Text(timeToOver)
+                Text(companyModel.timeToOver)
                     .font(.custom("SFPro-Regula", size: 17))
             }
             .foregroundColor(.blackUniversal)
@@ -65,6 +59,7 @@ struct CompanyCellView : View {
         .background(.lightGray)
         .cornerRadius(24)
         .onTapGesture {
+            viewModel.selectedCompanyDetail = companyModel
             navigationPath.append("CompanyDetail")
         }
     }
