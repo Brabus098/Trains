@@ -11,7 +11,6 @@
 <p align="center">
   <img src="https://github.com/Brabus098/Trains/blob/master/MainScreen.png?raw=true" width="200" alt="Главный экран">
   <img src="https://github.com/Brabus098/Trains/blob/master/ChooseCity.png?raw=true" width="200" alt="Выбор города">
-  <img src="https://github.com/Brabus098/Trains/blob/master/ChooseStation.png?raw=true" width="200" alt="Выбор станции">
   <img src="https://github.com/Brabus098/Trains/blob/master/ListCompany.png?raw=true" width="200" alt="Список перевозчиков">
   <img src="https://github.com/Brabus098/Trains/blob/master/CompanyInfo.png?raw=true" width="200" alt="Информация о перевозчике">
   <img src="https://github.com/Brabus098/Trains/blob/master/Filters.png?raw=true" width="200" alt="Фильтры">
