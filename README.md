@@ -60,9 +60,9 @@
 ### Быстрый старт
 
 ```bash
-git clone https://github.com/Brabus098/TravelSchedule.git
-cd TravelSchedule
-open TravelSchedule.xcodeproj
+git clone https://github.com/Brabus098/Trains.git
+cd Trains
+open Trains.xcodeproj
 ```
 1. Выберите симулятор или подключите устройство
 2. Нажмите `Cmd + R` для сборки и запуска  
