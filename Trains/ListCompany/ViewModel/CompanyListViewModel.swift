@@ -3,12 +3,13 @@
 import Foundation
 import Observation
 
-@Observable class CompanyListViewModel {
+@Observable final class CompanyListViewModel {
     
-    var model: CompanyListModel
+    private let model: CompanyListModel
     var companies: [CompanyModel]?
     var filterCompanies: [CompanyModel]?
     var visibleButtonStatus = false
+    var selectedCompanyDetail: CompanyModel?
     
     var morningButtonState: TimeOfDirectionModel = TimeOfDirectionModel(status: false,
                                                                         time: .morning)

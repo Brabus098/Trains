@@ -1,10 +1,9 @@
 import SwiftUI
 
+
 struct StoriesCellView: View {
     
-    let height: CGFloat = 140
-    let width: CGFloat = 92
-    
+    let borderStatus: Bool
     let imageName: String
     let textForImage = "Text Text Text Text Text Text Text Text Text"
     
@@ -13,23 +12,25 @@ struct StoriesCellView: View {
             Image(imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(width: width, height: height)
+                .frame(width: .mainStoriesWidth, height: .mainStoriesHeight)
                 .cornerRadius(12)
+                .opacity(borderStatus ? 1 : 0.5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.blue, lineWidth: 4)
+                        .stroke(borderStatus ? Color.blueUniversal : Color.clear, lineWidth: 4)
                 )
-            VStack{
+            
+            VStack {
                 Text(textForImage)
                     .font(.custom("SFPro-Regular", size: 12))
                     .foregroundStyle(.white)
                     .frame(alignment: .bottom)
-                    .frame(width: width * 0.8, height: height, alignment: .bottom)
+                    .frame(width: .mainStoriesWidth * 0.8, height: .mainStoriesHeight, alignment: .bottom)
                     .lineLimit(3)
                 Spacer()
                 Spacer()
             }
-            .frame(width: width , height: height)
+            .frame(width: .mainStoriesWidth , height: .mainStoriesHeight)
         }
     }
 }

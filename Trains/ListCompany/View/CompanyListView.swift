@@ -12,7 +12,6 @@ struct CompanyListView: View {
     let columns = [
         GridItem(.flexible())
     ]
-    
     var body: some View {
         
         ZStack {
@@ -24,14 +23,7 @@ struct CompanyListView: View {
                     LazyVGrid(columns: columns) {
                         if let companiesList = viewModel.filterCompanies,  companiesList.count > 0 {
                             ForEach(companiesList) { companies in
-                                CompanyCellView(navigationPath: $navigationPath, image: companies.image,
-                                                nameOfCompany: companies.companyName,
-                                                needSwapStation: companies.needSwapStation,
-                                                swapStation: companies.swapStation,
-                                                date: companies.date,
-                                                allTimePath: companies.allTimePath,
-                                                timeToStart: companies.timeToStart,
-                                                timeToOver: companies.timeToOver)
+                                CompanyCellView(navigationPath: $navigationPath, viewModel: viewModel, companyModel: companies)
                                 .padding(.horizontal)
                             }
                         }

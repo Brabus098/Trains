@@ -22,7 +22,7 @@ import Observation
     var stationList: [String]? // Данные  со станциями для конкретного города
     var cityList: [String]? // Данные из сети о выбранном городе
     
-    var model: ChooseCityModel
+    private let model: ChooseCityModel
     
     init() {
         self.model = ChooseCityModel()

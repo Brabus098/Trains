@@ -11,16 +11,16 @@ struct CustomNavigation: View {
             Button(action: backAction) {
                 HStack {
                     Image("LeftChevron")
-                        .padding(.horizontal, -30)
+                        .padding(.horizontal, -25)
                 }
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
+                .frame(width: 30, height: 44)
             }
             
-            Spacer()
             Text(title)
                 .font(.custom("SFPro-Bold", size: 17))
-            Spacer()
+                .frame(maxWidth: .infinity)
+                .lineLimit(1)
+            
             Rectangle()
                 .fill(Color.clear)
                 .frame(width: 44, height: 44)
@@ -30,3 +30,4 @@ struct CustomNavigation: View {
         .background(Color.background)
     }
 }
+

@@ -3,18 +3,20 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    
+    @Environment(ThemeManager.self) private var themeManager
+
     @Binding var hideTabBar: Bool
     
     @State private var navigationPath = NavigationPath()
-    @State private var activeDirection: DirectionType? = nil
-    @State var companyViewModel = CompanyListViewModel()
-    @State var viewModel = ChooseCityViewModel()
+    @State private var activeDirection: DirectionType?
+    @State private var companyViewModel = CompanyListViewModel()
+    @State private var viewModel = ChooseCityViewModel()
+    var storiesViewModel: StoriesViewModel
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                StoriesFeedView()
+                StoriesFeedView(hideTabBar: $hideTabBar, navigationPath: $navigationPath, viewModel: storiesViewModel)
                 
                 ChooseDirectionView(viewModel: viewModel, navigationPath: $navigationPath, activeDirection: $activeDirection)
                 
@@ -102,16 +104,27 @@ struct MainScreenView: View {
                         Color.background
                             .ignoresSafeArea()
                         VStack(spacing: 0) {
-                            CustomNavigation(title: "Информация о компании") {
+                            CustomNavigation(title: "Информация о перевозчике") {
                                 navigationPath.removeLast()
                             }
                             .background(Color.background)
-                            Spacer()
-                            Text("Информация о компании")
-                                .font(.custom("SFPro-Bold", size: 17))
+                            if let detail =  companyViewModel.selectedCompanyDetail?.detailInfo {
+                                CompanyInfoView(info: CompanyInfoModel(bigLogoName: detail.bigLogoName,
+                                                                       fullCompanyName: detail.fullCompanyName,
+                                                                       email:detail.email,
+                                                                       phone: detail.phone))
                                 .navigationBarHidden(true)
-                            Spacer()
+                            } else {
+                                Text("Нет информации о компании") .font(.custom("SFPro-Regula", size: 17))
+                            }
                         }
+                    }
+                } else if route == "Stories" {
+                    if let actualStory = storiesViewModel.actualStory {
+                        StoryLentView(stories: actualStory, viewModel: storiesViewModel)
+                            .navigationBarHidden(true)
+                    } else {
+                        Text("Нет информации о истории")
                     }
                 }
             }
@@ -124,7 +137,3 @@ struct MainScreenView: View {
         }
     }
 }
-
-//#Preview {
-//    MainScreen()
-//}

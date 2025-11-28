@@ -5,6 +5,8 @@ import SwiftUI
 @main
 struct YourAppNameApp: App {
     
+    private var themeManager = ThemeManager()
+
     init() {
         configureTabBar()
     }
@@ -12,6 +14,8 @@ struct YourAppNameApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(themeManager)
+                .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
         }
     }
     
