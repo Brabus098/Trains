@@ -10,8 +10,8 @@ struct ChooseDirectionView: View {
     @Binding var navigationPath: NavigationPath
     @Binding var activeDirection: DirectionType?
     
-    @State private var topButtonTitle = "Откуда"
-    @State private var bottomButtonTitle = "Куда"
+    @State private var topButtonTitle = DirectionType.from.rawValue
+    @State private var bottomButtonTitle = DirectionType.to.rawValue
     @State private var isSwapped = false
     
     var body: some View {
@@ -44,20 +44,20 @@ struct ChooseDirectionView: View {
             .cornerRadius(20)
             .padding()
         }
-        .onChange(of: viewModel.finalDirectionFrom) { oldValue, newValue in
+        .onChange(of: viewModel.finalDirectionFrom) { _, newValue in
             
             if let newCity = newValue {
                 topButtonTitle = newCity
             } else {
-                topButtonTitle = "Откуда"
+                topButtonTitle = DirectionType.from.rawValue
             }
         }
-        .onChange(of: viewModel.finalDirectionTo) { oldValue, newValue in
+        .onChange(of: viewModel.finalDirectionTo) { _, newValue in
             
             if let newCity = newValue {
                 bottomButtonTitle = newCity
             } else {
-                bottomButtonTitle = "Куда"
+                bottomButtonTitle = DirectionType.to.rawValue
             }
         }
     }
@@ -69,7 +69,7 @@ struct ChooseDirectionView: View {
             navigationPath.append(DirectionType.from)
         }) {
             // Верхняя кнопка всегда показывает FROM направление
-            if topButtonTitle == "Откуда" {
+            if topButtonTitle == DirectionType.from.rawValue {
                 Text("Откуда")
                     .font(.custom("SFPro-Regular", size: 17))
                     .foregroundColor(.grayUniversal)
@@ -94,7 +94,7 @@ struct ChooseDirectionView: View {
             navigationPath.append(DirectionType.to)
         }) {
             // Нижняя кнопка всегда показывает TO направление
-            if bottomButtonTitle == "Куда" {
+            if bottomButtonTitle == DirectionType.to.rawValue {
                 Text("Куда")
                     .font(.custom("SFPro-Regular", size: 17))
                     .foregroundColor(.grayUniversal)

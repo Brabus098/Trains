@@ -4,7 +4,7 @@ import SwiftUI
 
 struct SettingsScreenView: View {
     @Environment(ThemeManager.self) var themeManager
-    @State var navigationPath: NavigationPath = NavigationPath()
+    @State private var navigationPath: NavigationPath = NavigationPath()
     @Binding var hideTabBar: Bool
     
     var body: some View {
@@ -38,7 +38,7 @@ struct SettingsScreenView: View {
             }
             .background(Color.background)
         }
-        .onChange(of: navigationPath) { oldValue, newValue in
+        .onChange(of: navigationPath) { _, newValue in
             withAnimation(.easeInOut(duration: 0.25)) {
                 hideTabBar = !newValue.isEmpty
             }

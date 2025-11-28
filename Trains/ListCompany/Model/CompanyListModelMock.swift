@@ -14,7 +14,7 @@ extension CompanyModel {
         swapStation: nil,
         timeOfDay: .morning,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "ОАО «РЖД Экспресс»",
             email: "info@rzd-express.ru",
             phone: "+7 (800) 775-00-00"
@@ -31,7 +31,7 @@ extension CompanyModel {
         swapStation: "Ярославле",
         timeOfDay: .morning,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "ООО «МежгородАвто»",
             email: "zakaz@mezhgorodauto.ru",
             phone: "+7 (4852) 22-33-44"
@@ -48,7 +48,7 @@ extension CompanyModel {
         swapStation: nil,
         timeOfDay: .morning,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "АО «АэроФлот Региональный»",
             email: "contact@aeroflot-regional.ru",
             phone: "+7 (495) 223-55-55"
@@ -65,7 +65,7 @@ extension CompanyModel {
         swapStation: "Владимире",
         timeOfDay: .morning,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "ПАО «ТрансКарго»",
             email: "office@transcargo.ru",
             phone: "+7 (4922) 55-66-77"
@@ -82,7 +82,7 @@ extension CompanyModel {
         swapStation: nil,
         timeOfDay: .day,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "Туристическая компания «Волна‑Тур»",
             email: "tour@volna-tur.ru",
             phone: "+7 (812) 333-44-55"
@@ -99,7 +99,7 @@ extension CompanyModel {
         swapStation: "Твери",
         timeOfDay: .morning,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "ООО «Скоростной Транзит»",
             email: "transit@skorost-transit.ru",
             phone: "+7 (4822) 77-88-99"
@@ -116,7 +116,7 @@ extension CompanyModel {
         swapStation: nil,
         timeOfDay: .night,
         detailInfo: CompanyInfoModel(
-            bigLogo: "bigRgd",
+            bigLogoName: "bigRgd",
             fullCompanyName: "ЗАО «Грузовой Альянс»",
             email: "cargo@gruzovoy-alyans.ru",
             phone: "+7 (800) 123-45-67"

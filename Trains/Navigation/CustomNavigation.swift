@@ -18,7 +18,7 @@ struct CustomNavigation: View {
             
             Text(title)
                 .font(.custom("SFPro-Bold", size: 17))
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxWidth: .infinity)
                 .lineLimit(1)
             
             Rectangle()

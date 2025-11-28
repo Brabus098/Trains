@@ -3,14 +3,14 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @Environment(ThemeManager.self) var themeManager
+    @Environment(ThemeManager.self) private var themeManager
 
     @Binding var hideTabBar: Bool
     
     @State private var navigationPath = NavigationPath()
-    @State private var activeDirection: DirectionType? = nil
-    @State var companyViewModel = CompanyListViewModel()
-    @State var viewModel = ChooseCityViewModel()
+    @State private var activeDirection: DirectionType?
+    @State private var companyViewModel = CompanyListViewModel()
+    @State private var viewModel = ChooseCityViewModel()
     var storiesViewModel: StoriesViewModel
     
     var body: some View {
@@ -104,12 +104,12 @@ struct MainScreenView: View {
                         Color.background
                             .ignoresSafeArea()
                         VStack(spacing: 0) {
-                            CustomNavigation(title: "Информация о перевозчикее") {
+                            CustomNavigation(title: "Информация о перевозчике") {
                                 navigationPath.removeLast()
                             }
                             .background(Color.background)
                             if let detail =  companyViewModel.selectedCompanyDetail?.detailInfo {
-                                CompanyInfoView(info: CompanyInfoModel(bigLogo: detail.bigLogo,
+                                CompanyInfoView(info: CompanyInfoModel(bigLogoName: detail.bigLogoName,
                                                                        fullCompanyName: detail.fullCompanyName,
                                                                        email:detail.email,
                                                                        phone: detail.phone))

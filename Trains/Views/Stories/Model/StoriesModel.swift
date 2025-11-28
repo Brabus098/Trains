@@ -7,7 +7,7 @@ struct StoriesModel {
     let mocksLentDictionary = StoriesModel.mocksLentDictionary
     
     func returnImageLent() -> StoriesLentModel {
-        return StoriesLentModel(imageArray: mocksLentDictionary)
+        StoriesLentModel(imageArray: mocksLentDictionary)
     }
     
     func convertToStory(number: Int) -> [[Story]] {

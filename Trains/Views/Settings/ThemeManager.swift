@@ -1,7 +1,6 @@
 //  ThemeManager.swift
 import SwiftUI
-import Combine
 
-@Observable class ThemeManager {
+@Observable final class ThemeManager {
     var isDarkMode = false
 }

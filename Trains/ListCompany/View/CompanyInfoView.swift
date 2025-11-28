@@ -11,7 +11,7 @@ struct CompanyInfoView: View {
             Color.background.ignoresSafeArea()
             VStack {
                 VStack {
-                    Image(info.bigLogo)
+                    Image(info.bigLogoName)
                         .resizable()
                         .scaledToFit()
                 }

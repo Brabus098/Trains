@@ -5,7 +5,7 @@ import SwiftUI
 struct CompanyCellView : View {
     
     @Binding var navigationPath: NavigationPath
-    var viewModel: CompanyListViewModel
+    let viewModel: CompanyListViewModel
     
     let companyModel: CompanyModel
     

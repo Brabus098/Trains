@@ -3,9 +3,9 @@
 import Foundation
 import Observation
 
-@Observable class CompanyListViewModel {
+@Observable final class CompanyListViewModel {
     
-    var model: CompanyListModel
+    private let model: CompanyListModel
     var companies: [CompanyModel]?
     var filterCompanies: [CompanyModel]?
     var visibleButtonStatus = false

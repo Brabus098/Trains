@@ -1,8 +1,8 @@
 //  DirectionType.swift
 
 // Тип направления
-enum DirectionType {
-    case from  // Откуда
-    case to    // Куда
+enum DirectionType: String {
+    case from = "Откуда" 
+    case to   = "Куда"
     case none
 }
