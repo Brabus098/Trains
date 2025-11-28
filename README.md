@@ -9,10 +9,15 @@
 **Trains** - современное iOS-приложение для поиска и планирования путешествий с интеграцией Яндекс.Расписаний. Умный помощник для комфортного планирования поездок на любом транспорте.
 
 <p align="center">
-  <img src="https://github.com/Brabus098/TravelSchedule/blob/main/Screenshots/main-screen.png?raw=true" width="200" alt="Главный экран">
-  <img src="https://github.com/Brabus098/TravelSchedule/blob/main/Screenshots/schedule-screen.png?raw=true" width="200" alt="Расписание">
-  <img src="https://github.com/Brabus098/TravelSchedule/blob/main/Screenshots/stories-screen.png?raw=true" width="200" alt="Сторис">
-  <img src="https://github.com/Brabus098/TravelSchedule/blob/main/Screenshots/carrier-info.png?raw=true" width="200" alt="Информация о перевозчике">
+  <img src="https://github.com/Brabus098/Train/raw/main/MainScreen.png" width="200" alt="Главный экран">
+  <img src="https://github.com/Brabus098/Train/raw/main/ChooseCity.png" width="200" alt="Выбор города">
+  <img src="https://github.com/Brabus098/Train/raw/main/ChooseStation.png" width="200" alt="Выбор станции">
+  <img src="https://github.com/Brabus098/Train/raw/main/ListCompany.png" width="200" alt="Список перевозчиков">
+  <img src="https://github.com/Brabus098/Train/raw/main/CompanyInfo.png" width="200" alt="Информация о перевозчике">
+  <img src="https://github.com/Brabus098/Train/raw/main/Фильтры.png" width="200" alt="Фильтры">
+  <img src="https://github.com/Brabus098/Train/raw/main/Истории.png" width="200" alt="Истории">
+  <img src="https://github.com/Brabus098/Train/raw/main/Настройки.png" width="200" alt="Настройки">
+  <img src="https://github.com/Brabus098/Train/raw/main/ServerError.png" width="200" alt="Ошибка сервера">
 </p>
 
 ## 🚀 Возможности
