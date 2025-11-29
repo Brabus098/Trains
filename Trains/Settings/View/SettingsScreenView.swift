@@ -4,8 +4,10 @@ import SwiftUI
 
 struct SettingsScreenView: View {
     @Environment(ThemeManager.self) var themeManager
+    
     @State private var navigationPath: NavigationPath = NavigationPath()
     @Binding var hideTabBar: Bool
+    @State var viewModel = SettingsViewModel(model: UserAgreementModel())
     
     var body: some View {
         
@@ -29,7 +31,7 @@ struct SettingsScreenView: View {
                                     navigationPath.removeLast()
                                 }
                                 .background(Color.background)
-                                UserAgreementView(hideTabBar: $hideTabBar)
+                                UserAgreementView(hideTabBar: $hideTabBar, viewModel: viewModel)
                             }
                                 .navigationBarHidden(true)
                         }
@@ -46,10 +48,9 @@ struct SettingsScreenView: View {
     }
     
     private var footer: some View {
-        
         VStack(spacing: 10) {
-            Text("Приложение использует API «Яндекс.Расписания»")
-            Text("Версия 1.0 (beta)")
+            Text(viewModel.userAgreement.nameOfApi)
+            Text(viewModel.userAgreement.version)
         }
         .font(.custom("SFPro-Regula", size: 12))
         .padding(.bottom, 60)
