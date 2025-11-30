@@ -10,8 +10,7 @@ import SwiftUI
     
     var actualStory: [[Story]]?
     var actualNumber: Int?
-    
-    
+
     init() {
         self.model = StoriesModel()
     }
@@ -52,4 +51,7 @@ import SwiftUI
             : storyModel
         }
     }
+    
+    
 }
+

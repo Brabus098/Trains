@@ -6,7 +6,7 @@ struct StoriesFeedView: View {
     
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
-    var viewModel: StoriesViewModel
+    @State var viewModel: StoriesViewModel
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -19,7 +19,7 @@ struct StoriesFeedView: View {
                 viewModel.createMainImageLent()
                 viewModel.createDetailImageLent()
             }
-            .onChange(of: viewModel.isCloseStories) { oldValue, newValue in
+            .onChange(of: viewModel.isCloseStories) { _, newValue in
                 if newValue {
                     navigationPath.removeLast()
                     viewModel.isCloseStories.toggle()
@@ -33,8 +33,7 @@ struct StoriesFeedView: View {
             
             if let imageArray = viewModel.mainImageViewArray {
                 ForEach(imageArray, id: \.self) { imageName in
-                    StoriesCellView( borderStatus: imageName.borderStatus,
-                                     imageName: imageName.image)
+                    StoriesCellView(storiesType: MainStoriesModel(image: imageName.image, borderStatus: imageName.borderStatus))
                     .onTapGesture {
                         viewModel.createStoryArray(number: imageName.image)
                         navigationPath.append("Stories")

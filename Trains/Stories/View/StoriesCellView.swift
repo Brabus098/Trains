@@ -2,22 +2,21 @@ import SwiftUI
 
 
 struct StoriesCellView: View {
-    
-    let borderStatus: Bool
-    let imageName: String
+    let storiesType: MainStoriesModel
+
     let textForImage = "Text Text Text Text Text Text Text Text Text"
     
     var body: some View {
         ZStack {
-            Image(imageName)
+            Image(storiesType.image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: .mainStoriesWidth, height: .mainStoriesHeight)
                 .cornerRadius(12)
-                .opacity(borderStatus ? 1 : 0.5)
+                .opacity(storiesType.borderStatus ? 1 : 0.5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(borderStatus ? Color.blueUniversal : Color.clear, lineWidth: 4)
+                        .stroke(storiesType.borderStatus ? Color.blueUniversal : Color.clear, lineWidth: 4)
                 )
             
             VStack {
