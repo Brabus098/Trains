@@ -27,15 +27,7 @@ struct ChooseDirectionView: View {
                 .background(.white)
                 .cornerRadius(20)
                 
-                // Кнопка свапа
-                Button(action: {
-                    viewModel.swapDirections()
-                    isSwapped.toggle()
-                }) {
-                    Image("ChangeImage")
-                        .resizable()
-                        .frame(width: 36, height: 36)
-                }
+                swapButton
                 Spacer()
             }
             .frame(maxHeight: mainViewHeight)
@@ -59,6 +51,17 @@ struct ChooseDirectionView: View {
             } else {
                 bottomButtonTitle = DirectionType.to.rawValue
             }
+        }
+    }
+    
+    private var swapButton: some View {
+        Button(action: {
+            viewModel.swapDirections()
+            isSwapped.toggle()
+        }) {
+            Image("ChangeImage")
+                .resizable()
+                .frame(width: 36, height: 36)
         }
     }
     

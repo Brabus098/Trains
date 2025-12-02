@@ -12,6 +12,7 @@ struct MainScreenView: View {
     @State private var companyViewModel = CompanyListViewModel()
     @State private var viewModel = ChooseCityViewModel()
     var storiesViewModel: StoriesViewModel
+    var errorViewModel: ErrorViewModel
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -20,19 +21,7 @@ struct MainScreenView: View {
                 
                 ChooseDirectionView(viewModel: viewModel, navigationPath: $navigationPath, activeDirection: $activeDirection)
                 
-                Button(action: {
-                    companyViewModel = CompanyListViewModel()
-                    navigationPath.append("CompanyList")
-                }) {
-                    Text("Найти")
-                        .font(.custom("SFPro-Bold", size: 17))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: 150, maxHeight: 60)
-                        .background(.blueUniversal)
-                        .cornerRadius(16)
-                }
-                .opacity(viewModel.allDirectionAdds ? 1 : 0)
-                .disabled(!viewModel.allDirectionAdds)
+                searchButton
                 Spacer()
             }
             .navigationDestination(for: DirectionType.self) { direction in
@@ -135,5 +124,21 @@ struct MainScreenView: View {
                 hideTabBar = !newValue.isEmpty
             }
         }
+    }
+    
+    private var searchButton: some View {
+        Button(action: {
+            companyViewModel = CompanyListViewModel()
+            navigationPath.append("CompanyList")
+        }) {
+            Text("Найти")
+                .font(.custom("SFPro-Bold", size: 17))
+                .foregroundColor(.white)
+                .frame(maxWidth: 150, maxHeight: 60)
+                .background(.blueUniversal)
+                .cornerRadius(16)
+        }
+        .opacity(viewModel.allDirectionAdds ? 1 : 0)
+        .disabled(!viewModel.allDirectionAdds)
     }
 }

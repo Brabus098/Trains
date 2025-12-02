@@ -7,25 +7,27 @@ struct CustomTabView: View {
     @State private var selectedTab: Int = 0
     @State private var hideTabBar = false
     @State var storiesViewModel = StoriesViewModel()
+    @State var errorViewModel = ErrorViewModel()
 
     var body: some View {
         ZStack {
-            // Контент экранов
             Group {
                 switch selectedTab {
                 case 0:
-                    MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel)
+                    if errorViewModel.actualStatus == .NoProblems {
+                        MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel, errorViewModel: errorViewModel)
+                    } else {
+                        ErrorView(viewModel: errorViewModel)
+                    }
                 case 1:
                     SettingsScreenView(hideTabBar: $hideTabBar)
                 default:
-                    MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel)
+                    MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel, errorViewModel: errorViewModel)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
-            //.ignoresSafeArea()
             
-            // Таббар
             if !hideTabBar {
                 VStack {
                     Spacer()
@@ -53,7 +55,6 @@ struct CustomTabView: View {
         }
     }
     
-    // Кнопка таббара
     private func tabButton(imageActive: String,
                            imageInactive: String,
                            index: Int) -> some View {

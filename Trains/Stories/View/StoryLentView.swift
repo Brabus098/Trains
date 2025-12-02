@@ -88,7 +88,6 @@ struct StoryLentView: View {
     private func nextStory() {
         let storiesCount = stories[currentStoryGlobalIndex].count
         let currentStoryIndex = Int(progress * CGFloat(storiesCount))
-        
         let nextStoryIndex = currentStoryIndex + 1 < storiesCount ? currentStoryIndex + 1 : 0
         
         if nextStoryIndex == 0 && currentStoryIndex != 0 && currentStoryGlobalIndex < stories.count - 1 {
@@ -117,6 +116,7 @@ struct StoryLentView: View {
         }
         
         if currentStoryIndex > 0 {
+            
         } else if currentStoryIndex <= 0  && currentStoryGlobalIndex > 0 {
             currentStoryGlobalIndex -= 1
         } else if currentStoryIndex == 0 && currentStoryGlobalIndex == 0 {
