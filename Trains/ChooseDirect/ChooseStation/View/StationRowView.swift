@@ -6,16 +6,16 @@ struct StationRowView: View {
     @Binding var navigationPath: NavigationPath
     
     let station: String
-    var viewModel: ChooseCityViewModel
+    var viewModel: ChooseStationViewModel
     
     var body: some View {
         HStack() {
             Text(station)
             Spacer()
             Button(action: {
-                viewModel.selectedStation = station
-                viewModel.containsDestinationIfCan()
-                viewModel.activeIfAllAdds()
+                viewModel.setStation(with: station)
+                viewModel.tryContainsDestination()
+                viewModel.tryActiveIfAdds()
                 navigationPath = NavigationPath()
             }) {
                 Image("NextButton")

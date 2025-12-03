@@ -8,13 +8,14 @@ struct CustomTabView: View {
     @State private var hideTabBar = false
     @State var storiesViewModel = StoriesViewModel()
     @State var errorViewModel = ErrorViewModel()
-
+    
     var body: some View {
         ZStack {
             Group {
                 switch selectedTab {
                 case 0:
                     if errorViewModel.actualStatus == .NoProblems {
+              
                         MainScreenView(hideTabBar: $hideTabBar, storiesViewModel: storiesViewModel, errorViewModel: errorViewModel)
                     } else {
                         ErrorView(viewModel: errorViewModel)

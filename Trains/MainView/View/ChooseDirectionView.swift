@@ -5,10 +5,10 @@ import SwiftUI
 struct ChooseDirectionView: View {
     
     let mainViewHeight: CGFloat = 128
-    var viewModel: ChooseCityViewModel
+    var cityViewModel: ChooseCityViewModel
+    var service: DirectionsService
     
     @Binding var navigationPath: NavigationPath
-    @Binding var activeDirection: DirectionType?
     
     @State private var topButtonTitle = DirectionType.from.rawValue
     @State private var bottomButtonTitle = DirectionType.to.rawValue
@@ -36,7 +36,7 @@ struct ChooseDirectionView: View {
             .cornerRadius(20)
             .padding()
         }
-        .onChange(of: viewModel.finalDirectionFrom) { _, newValue in
+        .onChange(of: service.finalDirectionFrom) { _, newValue in
             
             if let newCity = newValue {
                 topButtonTitle = newCity
@@ -44,7 +44,7 @@ struct ChooseDirectionView: View {
                 topButtonTitle = DirectionType.from.rawValue
             }
         }
-        .onChange(of: viewModel.finalDirectionTo) { _, newValue in
+        .onChange(of: service.finalDirectionTo) { _, newValue in
             
             if let newCity = newValue {
                 bottomButtonTitle = newCity
@@ -56,7 +56,7 @@ struct ChooseDirectionView: View {
     
     private var swapButton: some View {
         Button(action: {
-            viewModel.swapDirections()
+            service.swapDirections()
             isSwapped.toggle()
         }) {
             Image("ChangeImage")
@@ -67,8 +67,8 @@ struct ChooseDirectionView: View {
     
     private var originButton: some View {
         Button(action: {
-            viewModel.needCityArray()
-            activeDirection = .from
+            cityViewModel.needCityArray()
+            service.directionType = .from
             navigationPath.append(DirectionType.from)
         }) {
             // Верхняя кнопка всегда показывает FROM направление
@@ -92,8 +92,8 @@ struct ChooseDirectionView: View {
     
     private var destinationButton: some View {
         Button(action: {
-            viewModel.needCityArray()
-            activeDirection = .to
+            cityViewModel.needCityArray()
+            service.directionType = .to
             navigationPath.append(DirectionType.to)
         }) {
             // Нижняя кнопка всегда показывает TO направление

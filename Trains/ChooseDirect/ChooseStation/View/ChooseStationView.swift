@@ -5,8 +5,10 @@ import SwiftUI
 struct ChooseStationView: View {
     
     @Binding var hideTabBar: Bool
-    var viewModel: ChooseCityViewModel
     @Binding var navigationPath: NavigationPath
+    
+    var viewModel: ChooseStationViewModel
+    
     @State private var searchText: String = ""
     
     var body: some View {
@@ -75,3 +77,5 @@ struct ChooseStationView: View {
         }
     }
 }
+
+

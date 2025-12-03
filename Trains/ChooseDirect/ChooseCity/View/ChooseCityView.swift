@@ -10,7 +10,7 @@ struct ChooseCityView: View {
     @State private var searchText: String = ""
     
     var viewModel: ChooseCityViewModel
-    var directionType: DirectionType
+    var chooseStationViewModel: ChooseStationViewModel
     
     var body: some View {
         
@@ -64,12 +64,9 @@ struct ChooseCityView: View {
         List(list, id: \.self) { city in
             CityRowView( navigationPath: $navigationPath,
                          place: city,
-                         viewModel: viewModel)
+                         viewModel: viewModel, stationViewModel: chooseStationViewModel)
             .listRowBackground(Color.background)
             .padding(.vertical, 7)
-        }
-        .onAppear {
-            viewModel.directionType = directionType
         }
         .listStyle(PlainListStyle())
         .padding(.top, -8)
@@ -89,3 +86,4 @@ struct ChooseCityView: View {
         }
     }
 }
+
