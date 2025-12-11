@@ -2,8 +2,8 @@
 
 import Foundation
 
-struct CompanyModel: Identifiable {
-    let id = UUID()
+struct CompanyModel: Identifiable, Decodable, Sendable {
+    var id = UUID()
     let companyName: String
     let image: String // image(systemImage: "top")
     let timeToStart: String // 22:30

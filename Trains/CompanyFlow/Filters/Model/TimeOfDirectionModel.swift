@@ -1,6 +1,6 @@
 //  TimeOfDirectionModel.swift
 
-struct TimeOfDirectionModel {
+struct TimeOfDirectionModel: Decodable, Sendable {
     var status: Bool
     var time: TimeOfDayType
 }

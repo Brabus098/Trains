@@ -17,7 +17,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "ОАО «РЖД Экспресс»",
             email: "info@rzd-express.ru",
-            phone: "+7 (800) 775-00-00"
+            phone: "+7 (800) 775-00-00", code: 1
         )
     ),
     CompanyModel(
@@ -34,7 +34,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "ООО «МежгородАвто»",
             email: "zakaz@mezhgorodauto.ru",
-            phone: "+7 (4852) 22-33-44"
+            phone: "+7 (4852) 22-33-44", code: 2
         )
     ),
     CompanyModel(
@@ -51,7 +51,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "АО «АэроФлот Региональный»",
             email: "contact@aeroflot-regional.ru",
-            phone: "+7 (495) 223-55-55"
+            phone: "+7 (495) 223-55-55", code: 3
         )
     ),
     CompanyModel(
@@ -68,7 +68,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "ПАО «ТрансКарго»",
             email: "office@transcargo.ru",
-            phone: "+7 (4922) 55-66-77"
+            phone: "+7 (4922) 55-66-77", code: 4
         )
     ),
     CompanyModel(
@@ -85,7 +85,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "Туристическая компания «Волна‑Тур»",
             email: "tour@volna-tur.ru",
-            phone: "+7 (812) 333-44-55"
+            phone: "+7 (812) 333-44-55", code: 5
         )
     ),
     CompanyModel(
@@ -102,7 +102,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "ООО «Скоростной Транзит»",
             email: "transit@skorost-transit.ru",
-            phone: "+7 (4822) 77-88-99"
+            phone: "+7 (4822) 77-88-99", code: 6
         )
     ),
     CompanyModel(
@@ -119,7 +119,7 @@ extension CompanyModel {
             bigLogoName: "bigRgd",
             fullCompanyName: "ЗАО «Грузовой Альянс»",
             email: "cargo@gruzovoy-alyans.ru",
-            phone: "+7 (800) 123-45-67"
+            phone: "+7 (800) 123-45-67", code: 7
         )
     )
 ]

@@ -1,6 +1,6 @@
 //  NeedSwapType.swift
 
-enum NeedSwapType {
+enum NeedSwapType: Decodable, Sendable {
     case yes
     case no
 }

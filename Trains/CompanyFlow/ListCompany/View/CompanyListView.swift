@@ -6,6 +6,7 @@ struct CompanyListView: View {
     
     @Bindable var viewModel: CompanyListViewModel
     @Binding var navigationPath: NavigationPath
+    @Binding var companyInfoViewModel: CompanyInfoViewModel
     
     let columns = [
         GridItem(.flexible())
@@ -13,24 +14,29 @@ struct CompanyListView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                directionText
-                companiesGrid
+            if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
+                VStack {
+                    directionText
+                    companiesGrid
+                }
+                fallbackView
+                searchButton
+            } else if viewModel.needToShowAlert {
+                ErrorView(viewModel: ErrorViewModel(actualStatus: .NoInternetConnection))
+            } else {
+                ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
             }
-            fallbackView
-            searchButton
         }
         .task {
             if viewModel.filterCompanies == nil {
-                await viewModel.getCompany(and: false)
+                await viewModel.getNewSchedual()
             }
         }
     }
-    
     private var directionText: some View {
         if let to = viewModel.to,
-            let from = viewModel.from {
-           return Text("\(from.city) (\(from.trainStations)) →  \(to.city) (\(to.trainStations))")
+           let from = viewModel.from {
+            return Text("\(from.city) (\(from.trainStations)) →  \(to.city) (\(to.trainStations))")
                 .font(.custom("SFPro-Bold", size: 24))
                 .padding()
         } else {
@@ -47,7 +53,7 @@ struct CompanyListView: View {
                 if let companiesList =
                     viewModel.filterCompanies,companiesList.count > 0 {
                     ForEach(companiesList) { companies in
-                        CompanyCellView(navigationPath: $navigationPath, viewModel: viewModel, companyModel: companies)
+                        CompanyCellView(navigationPath: $navigationPath, viewModel: companyInfoViewModel, companyModel: companies)
                             .padding(.horizontal)
                     }
                 }
@@ -62,7 +68,6 @@ struct CompanyListView: View {
         VStack {
             Spacer()
             Button(action: {
-                
                 navigationPath.append("FilterScreen")
             }) {
                 HStack {

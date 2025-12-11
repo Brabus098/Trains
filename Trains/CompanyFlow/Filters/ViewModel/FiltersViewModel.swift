@@ -4,7 +4,7 @@ import Foundation
 import Observation
 import Combine
 
-@Observable final class FiltersViewModel {
+@MainActor @Observable final class FiltersViewModel {
     
     private(set) var visibleButtonStatus = false
     private var cancelLables = Set<AnyCancellable>()

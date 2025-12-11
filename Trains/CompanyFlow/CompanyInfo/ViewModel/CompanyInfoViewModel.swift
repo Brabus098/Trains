@@ -4,14 +4,18 @@ import Observation
 import Combine
 import Foundation
 
-@Observable final class CompanyInfoViewModel {
+@MainActor @Observable final class CompanyInfoViewModel {
     
     var infoCompany: CompanyInfoModel?
+    var companyDetail: CompanyModel?
+  
     
-    private var service: CompanyService
+    private var service: DirectionsService
     private var cancelLables = Set<AnyCancellable>()
     
-    init(service: CompanyService) {
+    
+    
+    init(service: DirectionsService) {
         self.service = service
         setupSubscriptions()
     }
@@ -20,10 +24,15 @@ import Foundation
         service.companyDetailPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newState in
-                if let detail = newState?.detailInfo {
-                    self?.infoCompany = CompanyInfoModel(bigLogoName: detail.bigLogoName, fullCompanyName: detail.fullCompanyName, email: detail.email, phone: detail.phone)
-                }
+               
+                    self?.infoCompany = newState
+                
             }
             .store(in: &cancelLables)
     }
+    
+    func set(detail: CompanyModel) {
+        self.companyDetail = detail
+    }
+
 }

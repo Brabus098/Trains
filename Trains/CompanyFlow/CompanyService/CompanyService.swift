@@ -8,7 +8,7 @@ import Combine
     private let buttonStatusSubject = CurrentValueSubject<Bool, Never>(false)
     private let cleanFilterButtonStateSubject = CurrentValueSubject<Bool, Never>(false)
     private let filteredCompaniesSubject = CurrentValueSubject<[CompanyModel]?, Never>(nil)
-    private let companyDetailSubject = CurrentValueSubject<CompanyModel?, Never>(nil)
+    
     
     var buttonStatusPublisher: AnyPublisher<Bool, Never> {
         buttonStatusSubject.eraseToAnyPublisher()
@@ -20,9 +20,7 @@ import Combine
         filteredCompaniesSubject.eraseToAnyPublisher()
     }
     var standardCompanies: [CompanyModel]?
-    var companyDetailPublisher : AnyPublisher <CompanyModel?, Never> {
-        companyDetailSubject.eraseToAnyPublisher()
-    }
+    
     
     func needChangeButton(status: Bool) {
         buttonStatusSubject.send(status)
@@ -30,10 +28,6 @@ import Combine
     
     func set(filterCompany: [CompanyModel]) {
         filteredCompaniesSubject.send(filterCompany)
-    }
-    
-    func set(selectedCompanies: CompanyModel ) {
-        companyDetailSubject.send(selectedCompanies)
     }
     
     func set(basicCompanies: [CompanyModel]) {

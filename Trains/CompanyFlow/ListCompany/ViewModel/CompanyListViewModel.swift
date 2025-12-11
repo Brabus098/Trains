@@ -4,13 +4,14 @@ import Foundation
 import Observation
 import Combine
 
-@Observable final class CompanyListViewModel {
+@MainActor @Observable final class CompanyListViewModel {
     
     private let model: CompanyListModel
     private let service: CompanyService
     private let directionService: DirectionsService
     private var cancelLables = Set<AnyCancellable>()
-    
+    var needToShowAlert: Bool = false
+    var needToShowErrorView: Bool = false
     var to: DirectionModel?
     var from: DirectionModel?
     
@@ -42,41 +43,56 @@ import Combine
             .receive(on: DispatchQueue.main)
             .sink { [weak self] to in
                 self?.to = to
-                Task {
-                    await self?.getCompany(and: true)
-                }
             }
             .store(in: &cancelLables)
         directionService.directionFromPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] from in
                 self?.from = from
-                Task {
-                    await self?.getCompany(and: true)
-                } // Обнуляем состояние фильтров и обновляем состояние списка компаний
+            }
+            .store(in: &cancelLables)
+        directionService.schedulePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newSchedule in
+                if let newSchedule {
+                    self?.filterCompanies = newSchedule
+                    self?.service.set(basicCompanies: newSchedule)
+                    self?.service.set(filterCompany: newSchedule)
+                }
+            }
+            .store(in: &cancelLables)
+        directionService.needToShowNoInternetViewPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.needToShowAlert = status
+            }
+            .store(in: &cancelLables)
+        directionService.neeToShowErrorConnectionViewPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.needToShowErrorView = status
             }
             .store(in: &cancelLables)
     }
     
-    func getCompany(and resetValue: Bool) async {
+    func resetFilterButton(status: Bool)  {
         
-        if let to = to, let from = from, let newCompanies = model.returnCompany(from: from, to: to) {
-            service.set(basicCompanies: newCompanies)
-            service.set(filterCompany: newCompanies)
-        }
-        
-        if resetValue {
+        if status {
+            directionService.cleanSchedule()
             service.reset()
+            filterCompanies = nil
         }
     }
     
-    func setSelectCompany(detail: CompanyModel) {
-        service.set(selectedCompanies: detail)
+    func setSelectCompany(detail: CompanyModel) async {
+        
+        if  String(detail.detailInfo.code) != "" {
+            await directionService.set(selectedCompanies: String(detail.detailInfo.code))
+        }
+    }
+    
+    
+    func getNewSchedual() async {
+        await directionService.getNewSchedualBetweenStation()
     }
 }
-
-
-
-
-
-

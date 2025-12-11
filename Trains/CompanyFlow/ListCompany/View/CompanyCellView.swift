@@ -5,15 +5,34 @@ import SwiftUI
 struct CompanyCellView : View {
     
     @Binding var navigationPath: NavigationPath
-    let viewModel: CompanyListViewModel
+    let viewModel: CompanyInfoViewModel
     
     let companyModel: CompanyModel
     
     var body: some View {
         VStack {
             HStack {
-                Image(companyModel.image)
-                    .frame(width:38, height: 38)
+                AsyncImage(url: URL(string: companyModel.image)) { image in
+                    ZStack {
+                        Color.white
+                            .frame(width: 38, height: 38)
+                            .cornerRadius(12)
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 34, height: 34)
+                    }
+                    .frame(width: 38, height: 38)
+                    .cornerRadius(12)
+                } placeholder: {
+                    ZStack {
+                        Color.white
+                            .frame(width: 38, height: 38)
+                            .cornerRadius(12)
+                    }
+                    .frame(width: 38, height: 38)
+                    .cornerRadius(12)
+                }
                 topLine
             }
             .padding(.horizontal)
@@ -24,7 +43,7 @@ struct CompanyCellView : View {
         .background(.lightGray)
         .cornerRadius(24)
         .onTapGesture {
-            viewModel.setSelectCompany(detail: companyModel)
+            viewModel.set(detail: companyModel)
             navigationPath.append("CompanyDetail")
         }
     }
