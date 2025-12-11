@@ -1,6 +1,6 @@
 //  UserAgreementConfig.swift
 
-struct UserAgreementConfig {
+struct UserAgreementConfig: Decodable, Sendable {
     let namesOffer: String
     let linkOfDocument: String
     let textDocument: String

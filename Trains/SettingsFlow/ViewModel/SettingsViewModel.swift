@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-@Observable final class SettingsViewModel {
+@MainActor @Observable final class SettingsViewModel {
     
     let userAgreement: UserAgreementConfig
     
