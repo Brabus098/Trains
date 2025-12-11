@@ -34,7 +34,7 @@ struct MainScreenView: View {
         
         let companyService = CompanyService()
         
-        self._companyInfoViewModel = State(initialValue: CompanyInfoViewModel(service: companyService))
+        self._companyInfoViewModel = State(initialValue: CompanyInfoViewModel(service: directionService))
         self._filtersViewModel = State(initialValue: FiltersViewModel(service: companyService))
         self._companyViewModel = State(initialValue: CompanyListViewModel(service: companyService, directionService: directionService))
         
@@ -52,6 +52,9 @@ struct MainScreenView: View {
                 
                 searchButton
                 Spacer()
+            }
+            .onAppear{
+                companyViewModel.resetFilterButton(status: true)
             }
             .navigationDestination(for: DirectionType.self) { direction in
                 createView(
@@ -77,7 +80,7 @@ struct MainScreenView: View {
                         and:
                             CompanyListView(
                                 viewModel: companyViewModel,
-                                navigationPath: $navigationPath
+                                navigationPath: $navigationPath, companyInfoViewModel: $companyInfoViewModel
                             )
                     )
                 case "FilterScreen":
@@ -91,7 +94,7 @@ struct MainScreenView: View {
                 case "CompanyDetail":
                     createView(
                         with: "Информация о перевозчике",
-                        and: CompanyInfoView(viewModel: companyInfoViewModel))
+                        and: CompanyInfoView(viewModel: companyInfoViewModel, companyListViewModel: companyViewModel))
                 case "Stories":
                     StoryLentView(viewModel: storiesLentViewModel)
                         .navigationBarHidden(true)

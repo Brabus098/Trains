@@ -4,14 +4,13 @@ import Observation
 import Foundation
 import Combine
 
-@Observable class ChooseDirectionViewModel {
+@MainActor @Observable class ChooseDirectionViewModel {
     
     var finalDirectionTo: String?
     var finalDirectionFrom: String?
     var allDirectionAdds: Bool?
-    
+    var needCleanData: Bool?
     private var cancelLables = Set<AnyCancellable>()
-    
     private let directionService: DirectionsService
     
     init(directionService: DirectionsService) {
@@ -19,7 +18,7 @@ import Combine
         addSubscribing()
     }
     
-    func addSubscribing(){
+    private func addSubscribing() {
         directionService.finalDirectionToPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] directionTo in
@@ -38,6 +37,12 @@ import Combine
                 self?.allDirectionAdds = newStatus
             }
             .store(in: &cancelLables)
+        directionService.needCleanSchedulePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.needCleanData = status
+            }
+            .store(in: &cancelLables)
     }
     
     func needSwapDirection(){
@@ -46,5 +51,9 @@ import Combine
     
     func set(direction: DirectionType){
         directionService.directionType = direction
+    }
+    
+    func needCleanSchedualList(){
+        directionService.cleanSchedule()
     }
 }

@@ -37,19 +37,23 @@ struct ChooseDirectionView: View {
         }
         .onChange(of:
                     chooseDirectionViewModel.finalDirectionFrom) { _, newValue in
-            
             if let newCity = newValue {
                 topButtonTitle = newCity
             } else {
                 topButtonTitle = DirectionType.from.rawValue
             }
         }
-        .onChange(of:  chooseDirectionViewModel.finalDirectionTo) { _, newValue in
+                    .onChange(of:  chooseDirectionViewModel.finalDirectionTo) { _, newValue in
                         
                         if let newCity = newValue {
                             bottomButtonTitle = newCity
                         } else {
                             bottomButtonTitle = DirectionType.to.rawValue
+                        }
+                    }
+                    .onAppear {
+                        if let needClean = chooseDirectionViewModel.needCleanData, needClean == true {
+                            chooseDirectionViewModel.needCleanSchedualList()
                         }
                     }
     }
