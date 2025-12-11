@@ -6,7 +6,6 @@ struct ChooseStationView: View {
     
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
-    
     var viewModel: ChooseStationViewModel
     
     @State private var searchText: String = ""
@@ -16,7 +15,13 @@ struct ChooseStationView: View {
             VStack {
                 searchBar
                 Spacer().frame(height: 12)
-                stationList
+                if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
+                    stationList
+                } else if viewModel.needToShowAlert {
+                    ErrorView(viewModel: ErrorViewModel(actualStatus: .NoInternetConnection))
+                } else {
+                    ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
+                }
             }
             .padding(.top, -10)
         }

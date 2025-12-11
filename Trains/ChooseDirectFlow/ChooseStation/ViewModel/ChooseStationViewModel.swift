@@ -2,18 +2,42 @@
 
 import Observation
 import Foundation
+import Combine
 
-@Observable final class ChooseStationViewModel {
+@MainActor @Observable final class ChooseStationViewModel {
     
     var listIsEmpty: Bool = false
-    var stationList: [String]?
+    var stationList: [ChooseStationModel]?
+    var needToShowAlert: Bool = false
+    var needToShowErrorView: Bool = false
     
-    private let model: ChooseStationModel
+    private var cancellables = Set<AnyCancellable>()
+    private var noInternetView: ErrorView?
+    
     private let directionService: DirectionsService
     
     init(directionService: DirectionsService) {
-        self.model = ChooseStationModel()
         self.directionService = directionService
+        
+        directionService.stationsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newStations in
+                self?.stationList = newStations
+            }
+            .store(in: &cancellables)
+        
+        directionService.needToShowNoInternetViewPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.needToShowAlert = status
+            }
+            .store(in: &cancellables)
+        directionService.neeToShowErrorConnectionViewPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.needToShowErrorView = status
+            }
+            .store(in: &cancellables)
     }
     
     func filterStation(by word: String) {
@@ -26,7 +50,7 @@ import Foundation
             return
         }
         
-        let newList = stationList.filter { $0.localizedCaseInsensitiveContains(word) }
+        let newList = stationList.filter { $0.nameOfStation.localizedCaseInsensitiveContains(word) }
         
         if newList.isEmpty {
             listIsEmpty = true
@@ -36,8 +60,8 @@ import Foundation
     }
     
     func needStationForCity() async {
-        guard let selectedCity = directionService.selectedCity else { return }
-        stationList = model.getStation(for: selectedCity)
+        
+        await directionService.updateStationList()
         if let stationList, !stationList.isEmpty {
             listIsEmpty = false
         }
@@ -51,7 +75,7 @@ import Foundation
         directionService.activeIfAllAdds()
     }
     
-    func setStation(with name: String) {
+    func setStation(with name: ChooseStationModel) {
         directionService.selectedStation = name
     }
 }

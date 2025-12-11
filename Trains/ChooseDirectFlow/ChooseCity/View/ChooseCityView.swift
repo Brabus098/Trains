@@ -60,10 +60,10 @@ struct ChooseCityView: View {
         }
     }
     
-    private func cityListView(_ list: [String]) -> some View {
-        List(list, id: \.self) { city in
+    private func cityListView(_ list: [ChoosePlaceModel]) -> some View {
+        List(list, id: \.self) { place in
             CityRowView( navigationPath: $navigationPath,
-                         place: city,
+                         place: place,
                          viewModel: viewModel)
             .listRowBackground(Color.background)
             .padding(.vertical, 7)

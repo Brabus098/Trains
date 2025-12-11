@@ -4,10 +4,10 @@ import Foundation
 import Observation
 import Combine
 
-@Observable class ChooseCityViewModel {
+@MainActor @Observable class ChooseCityViewModel {
     
     var listIsEmpty: Bool = false
-    var cityList: [String]?
+    var cityList: [ChoosePlaceModel]?
     
     private let model: ChooseCityModel
     private let directionService: DirectionsService
@@ -29,14 +29,13 @@ import Combine
         
         if word.isEmpty {
             Task{
-               await             needCityArray()
-
+                await needCityArray()
             }
             return
         }
         
         let newList = cityList.filter {
-            $0.localizedCaseInsensitiveContains(word)
+            $0.cityName.localizedCaseInsensitiveContains(word)
         }
         
         if newList.isEmpty {
@@ -46,7 +45,7 @@ import Combine
         }
     }
     
-    func setSelectedCity(_ place: String) {
+    func setSelectedCity(_ place: ChoosePlaceModel) {
         directionService.selectedCity = place
     }
 }

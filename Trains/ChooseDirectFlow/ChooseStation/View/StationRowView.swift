@@ -5,12 +5,12 @@ import SwiftUI
 struct StationRowView: View {
     @Binding var navigationPath: NavigationPath
     
-    let station: String
+    let station: ChooseStationModel
     var viewModel: ChooseStationViewModel
     
     var body: some View {
         HStack() {
-            Text(station)
+            Text(station.nameOfStation)
             Spacer()
             Button(action: {
                 viewModel.setStation(with: station)

@@ -5,12 +5,12 @@ import SwiftUI
 struct CityRowView: View {
     
     @Binding var navigationPath: NavigationPath
-    let place: String
+    let place: ChoosePlaceModel
     var viewModel: ChooseCityViewModel
     
     var body: some View {
         HStack() {
-            Text(place)
+            Text(place.cityName)
             Spacer()
             Button(action: {
                 viewModel.setSelectedCity(place)
