@@ -1,5 +1,5 @@
 //  StoriesLentModel.swift
 
-struct StoriesLentModel {
+struct StoriesLentModel: Sendable {
     let imageArray: [Int: [String]]
 }

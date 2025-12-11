@@ -3,7 +3,7 @@
 import SwiftUI
 import Combine
 
-@Observable final class StoriesLentViewModel {
+@MainActor @Observable final class StoriesLentViewModel {
     
     private let service: StoriesService
     private var cancelLables = Set<AnyCancellable>()

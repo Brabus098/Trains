@@ -3,7 +3,7 @@
 import SwiftUI
 import Combine
 
-@Observable final class StoriesFeedViewModel {
+@MainActor @Observable final class StoriesFeedViewModel {
     
     var isCloseStories: Bool = false
     var mainImageViewArray: [MainStoriesModel]?

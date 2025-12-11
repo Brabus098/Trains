@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct StoryLentConfiguration {
+struct StoryLentConfiguration:Sendable {
     let timerTickInternal: TimeInterval
     let progressPerTick: CGFloat
     
