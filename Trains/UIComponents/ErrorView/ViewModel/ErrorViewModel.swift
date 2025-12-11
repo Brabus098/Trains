@@ -2,8 +2,9 @@
 
 import Observation
 
-@Observable final class ErrorViewModel {
-    var actualStatus: ErrorType = .NoProblems
+@MainActor @Observable final class ErrorViewModel {
+    var actualStatus: ErrorType
+
     var imageName: String? {
         get {
             switch actualStatus {
@@ -22,7 +23,7 @@ import Observation
         }
     }
     
-    func set(error: ErrorType) {
-        self.actualStatus = error
+    init(actualStatus: ErrorType) {
+        self.actualStatus = actualStatus
     }
 }

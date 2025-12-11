@@ -6,7 +6,7 @@ struct CustomTabView: View {
     
     @State private var selectedTab: Int = 0
     @State private var hideTabBar = false
-    @State var errorViewModel = ErrorViewModel()
+    @State var errorViewModel = ErrorViewModel(actualStatus: .NoProblems)
     @State var storiesService = StoriesService(model: StoriesModel())
     
     var body: some View {
