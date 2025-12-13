@@ -5,8 +5,11 @@ import OpenAPIRuntime
 import OpenAPIURLSession
 
 actor NetworkService {
+    
     private let apiKey = "11758c37-0b0f-43a1-9378-a522f04edfae"
     
+    // MARK: - Methods
+
     func fetchSchedualBetweenStations(from: String, to: String) async throws-> [CompanyModel] {
         
         guard await checkInternetConnection() else {
@@ -85,6 +88,7 @@ actor NetworkService {
     }
     
     // MARK: Helpful methods
+    
     private func checkDetail(_ detail:Carrier, code: Int) -> CompanyInfoModel {
         
         if let logo = detail.carrier?.logo, let nameOfCompany = detail.carrier?.title, let email = detail.carrier?.email, let phone = detail.carrier?.phone {

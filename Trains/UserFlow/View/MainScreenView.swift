@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct MainScreenView: View {
+    
+    // MARK: - Properties
+    
     @Environment(ThemeManager.self) private var themeManager
     @Binding private var hideTabBar: Bool
     
@@ -40,8 +43,9 @@ struct MainScreenView: View {
         
         self._storiesFeedViewModel = State(initialValue: StoriesFeedViewModel(service: storiesService))
         self._storiesLentViewModel = State(initialValue: StoriesLentViewModel(service: storiesService))
-        
     }
+    
+    // MARK: - Body
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -110,6 +114,8 @@ struct MainScreenView: View {
             }
         }
     }
+    
+    // MARK: - Subviews
     
     private var searchButton: some View {
         Button(action: {

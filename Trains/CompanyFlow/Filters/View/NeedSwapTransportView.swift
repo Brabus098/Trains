@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct NeedSwapTransportView: View {
+    
     let isOn: Bool
     @Bindable var viewModel: FiltersViewModel
     let needSwap: NeedSwapType

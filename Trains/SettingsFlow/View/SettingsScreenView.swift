@@ -3,12 +3,16 @@
 import SwiftUI
 
 struct SettingsScreenView: View {
-    @Environment(ThemeManager.self) var themeManager
     
+    // MARK: - Properties
+
+    @Environment(ThemeManager.self) var themeManager
     @State private var navigationPath: NavigationPath = NavigationPath()
     @Binding var hideTabBar: Bool
     @State var viewModel = SettingsViewModel(model: UserAgreementModel())
     
+    // MARK: - Body
+
     var body: some View {
         
         NavigationStack(path: $navigationPath) {
@@ -47,6 +51,8 @@ struct SettingsScreenView: View {
         }
     }
     
+    // MARK: - Subviews
+
     private var footer: some View {
         VStack(spacing: 10) {
             Text(viewModel.userAgreement.nameOfApi)

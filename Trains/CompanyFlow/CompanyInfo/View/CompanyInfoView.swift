@@ -4,12 +4,29 @@ import SwiftUI
 
 struct CompanyInfoView: View {
     
+    // MARK: - Properties
+
     var viewModel: CompanyInfoViewModel
     var companyListViewModel: CompanyListViewModel
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             Color.background.ignoresSafeArea()
+            contentView
+        }
+        .task {
+            if let companyModel = viewModel.companyDetail {
+                await companyListViewModel.setSelectCompany(detail: companyModel)
+            }
+        }
+    }
+    
+    // MARK: - Subviews
+
+    private var contentView: some View {
+        VStack {
             if !companyListViewModel.needToShowAlert && !companyListViewModel.needToShowErrorView {
                 VStack {
                     logo
@@ -21,11 +38,6 @@ struct CompanyInfoView: View {
                 ErrorView(viewModel: ErrorViewModel(actualStatus: .NoInternetConnection))
             } else {
                 ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
-            }
-        }
-        .task {
-            if let companyModel = viewModel.companyDetail {
-                await companyListViewModel.setSelectCompany(detail: companyModel)
             }
         }
     }

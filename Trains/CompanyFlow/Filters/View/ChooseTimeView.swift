@@ -2,33 +2,45 @@
 
 import SwiftUI
 
+private enum Constants {
+    static let morning = "Утро 06:00 - 12:00"
+    static let day = "День 12:00 - 18:00"
+    static let afternoon = "Вечер 18:00 - 00:00"
+    static let night = "Ночь 00:00 - 06:00"
+    static let empty = "Данных нет"
+}
+
 struct ChooseTimeView: View {
     
+    // MARK: - Properties
+
     @Bindable var viewModel: FiltersViewModel
     let timeOfDay: TimeOfDayType
     @State var imageState: String = "OffCheckBox"
     
+    // MARK: - Body
+
     var body: some View {
         switch timeOfDay {
         case .morning:
-            createTimeButton(text: "Утро 06:00 - 12:00",
+            createTimeButton(text: Constants.morning,
                              viewModel: viewModel,
                              buttonStatus: viewModel.morningButtonState.status,
                              timeOfDay: .morning)
         case .day:
-            createTimeButton(text: "День 12:00 - 18:00",
+            createTimeButton(text: Constants.day,
                              viewModel: viewModel,
                              buttonStatus: viewModel.dayButtonState.status,
                              timeOfDay: .day)
             
         case .afternoon:
-            createTimeButton(text: "Вечер 18:00 - 00:00",
+            createTimeButton(text: Constants.afternoon,
                              viewModel: viewModel,
                              buttonStatus: viewModel.afternoonButtonState.status,
                              timeOfDay: .afternoon)
             
         case .night:
-            createTimeButton(text: "Ночь 00:00 - 06:00",
+            createTimeButton(text: Constants.night,
                              viewModel: viewModel,
                              buttonStatus: viewModel.nightButtonState.status,
                              timeOfDay: .night)
@@ -37,6 +49,8 @@ struct ChooseTimeView: View {
         }
     }
     
+    // MARK: - Sub Methods
+
     private func createTimeButton(text: String, viewModel: FiltersViewModel, buttonStatus: Bool, timeOfDay: TimeOfDayType) -> some View {
         HStack {
             Text(text)
@@ -48,4 +62,3 @@ struct ChooseTimeView: View {
         }
     }
 }
-

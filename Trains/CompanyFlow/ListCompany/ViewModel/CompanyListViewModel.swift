@@ -6,6 +6,8 @@ import Combine
 
 @MainActor @Observable final class CompanyListViewModel {
     
+    // MARK: - Properties
+    
     private let model: CompanyListModel
     private let service: CompanyService
     private let directionService: DirectionsService
@@ -24,6 +26,8 @@ import Combine
         self.directionService = directionService
         setupSubscriptions()
     }
+    
+    // MARK: - Sub Methods
     
     private func setupSubscriptions() {
         service.buttonStatusPublisher
@@ -75,6 +79,8 @@ import Combine
             .store(in: &cancelLables)
     }
     
+    // MARK: - Methods
+
     func resetFilterButton(status: Bool)  {
         
         if status {

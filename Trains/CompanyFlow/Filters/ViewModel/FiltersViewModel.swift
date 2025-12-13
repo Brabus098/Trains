@@ -6,6 +6,8 @@ import Combine
 
 @MainActor @Observable final class FiltersViewModel {
     
+    // MARK: - Properties
+    
     private(set) var visibleButtonStatus = false
     private var cancelLables = Set<AnyCancellable>()
     
@@ -26,6 +28,8 @@ import Combine
         self.service = service
         setupSubscriptions()
     }
+    
+    // MARK: - Methods
     
     private func setupSubscriptions() {
         service.buttonStatusPublisher

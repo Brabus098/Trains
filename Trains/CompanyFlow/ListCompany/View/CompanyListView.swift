@@ -4,16 +4,33 @@ import SwiftUI
 
 struct CompanyListView: View {
     
+    // MARK: - Properties
+
     @Bindable var viewModel: CompanyListViewModel
     @Binding var navigationPath: NavigationPath
     @Binding var companyInfoViewModel: CompanyInfoViewModel
     
-    let columns = [
+    private let columns = [
         GridItem(.flexible())
     ]
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
+            contentView
+        }
+        .task {
+            if viewModel.filterCompanies == nil {
+                await viewModel.getNewSchedual()
+            }
+        }
+    }
+    
+    // MARK: - Subviews
+
+    private var contentView: some View {
+        VStack {
             if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
                 VStack {
                     directionText
@@ -27,12 +44,8 @@ struct CompanyListView: View {
                 ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
             }
         }
-        .task {
-            if viewModel.filterCompanies == nil {
-                await viewModel.getNewSchedual()
-            }
-        }
     }
+    
     private var directionText: some View {
         if let to = viewModel.to,
            let from = viewModel.from {
@@ -102,5 +115,3 @@ struct CompanyListView: View {
         }
     }
 }
-
-

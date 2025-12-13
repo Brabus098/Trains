@@ -3,9 +3,14 @@
 import SwiftUI
 
 struct StoriesModel {
+    
+    // MARK: - Properties
+
     let mainImageViewArray = StoriesModel.mainImageViewArray
     let mocksLentDictionary = StoriesModel.mocksLentDictionary
     
+    // MARK: - Methods
+
     func returnImageLent() -> StoriesLentModel {
         StoriesLentModel(imageArray: mocksLentDictionary)
     }

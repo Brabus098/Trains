@@ -4,10 +4,14 @@ import SwiftUI
 
 struct StoriesFeedView: View {
     
+    // MARK: - Properties
+
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     @State var viewModel: StoriesFeedViewModel
     
+    // MARK: - Body
+
     var body: some View {
         NavigationStack(path: $navigationPath) {
             ScrollView(.horizontal) {
@@ -23,6 +27,8 @@ struct StoriesFeedView: View {
         }
     }
     
+    // MARK: - Subviews
+
     private var lentWithStories: some View {
         LazyHStack(spacing: 10) {
             

@@ -8,11 +8,9 @@ import Foundation
     
     var infoCompany: CompanyInfoModel?
     var companyDetail: CompanyModel?
-  
     
     private var service: DirectionsService
     private var cancelLables = Set<AnyCancellable>()
-    
     
     
     init(service: DirectionsService) {
@@ -20,12 +18,14 @@ import Foundation
         setupSubscriptions()
     }
     
+    // MARK: - Methods
+    
     private func setupSubscriptions() {
         service.companyDetailPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newState in
-               
-                    self?.infoCompany = newState
+                
+                self?.infoCompany = newState
                 
             }
             .store(in: &cancelLables)
@@ -34,5 +34,4 @@ import Foundation
     func set(detail: CompanyModel) {
         self.companyDetail = detail
     }
-
 }

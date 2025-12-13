@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct UserAgreementView:View {
+    
     @Binding var hideTabBar: Bool
     var viewModel: SettingsViewModel
     

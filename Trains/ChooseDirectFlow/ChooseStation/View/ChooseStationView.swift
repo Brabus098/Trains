@@ -4,29 +4,41 @@ import SwiftUI
 
 struct ChooseStationView: View {
     
+    // MARK: - Properties
+    
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     var viewModel: ChooseStationViewModel
     
     @State private var searchText: String = ""
     
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             VStack {
                 searchBar
                 Spacer().frame(height: 12)
-                if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
-                    stationList
-                } else if viewModel.needToShowAlert {
-                    ErrorView(viewModel: ErrorViewModel(actualStatus: .NoInternetConnection))
-                } else {
-                    ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
-                }
+                contentView
             }
             .padding(.top, -10)
         }
         .task {
             await viewModel.needStationForCity()
+        }
+    }
+    
+    // MARK: - Subviews
+    
+    private var contentView: some View {
+        VStack {
+            if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
+                stationList
+            } else if viewModel.needToShowAlert {
+                ErrorView(viewModel: ErrorViewModel(actualStatus: .NoInternetConnection))
+            } else {
+                ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
+            }
         }
     }
     
@@ -85,5 +97,3 @@ struct ChooseStationView: View {
         }
     }
 }
-
-
