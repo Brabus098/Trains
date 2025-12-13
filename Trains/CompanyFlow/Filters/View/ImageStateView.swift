@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct ImageStateView: View {
+    
     @Bindable var viewModel: FiltersViewModel
     let isOn: Bool
     let timeOfDay: TimeOfDayType

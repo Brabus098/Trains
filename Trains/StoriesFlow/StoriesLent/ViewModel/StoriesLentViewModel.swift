@@ -5,6 +5,8 @@ import Combine
 
 @MainActor @Observable final class StoriesLentViewModel {
     
+    // MARK: - Properties
+
     private let service: StoriesService
     private var cancelLables = Set<AnyCancellable>()
     private var currentStoryGlobalIndex: Int = 0
@@ -53,6 +55,8 @@ import Combine
         addSubscribing()
     }
     
+    // MARK: - Methods
+
     func addSubscribing() {
         service.actualStoryPublisher
             .receive(on: DispatchQueue.main)

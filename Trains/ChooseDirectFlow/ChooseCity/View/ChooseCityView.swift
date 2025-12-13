@@ -4,11 +4,15 @@ import SwiftUI
 
 struct ChooseCityView: View {
     
+    // MARK: - Properties
+
     @Binding var navigationPath: NavigationPath
     @State private var searchText: String = ""
     
     var viewModel: ChooseCityViewModel
     
+    // MARK: - Body
+
     var body: some View {
         
         ZStack {
@@ -24,6 +28,8 @@ struct ChooseCityView: View {
         }
     }
     
+    // MARK: - Subviews
+
     private var searchBar: some View {
         HStack {
             Image(searchText.isEmpty ?  "SearchBarFirst" : "SearchBarSecond")
@@ -60,6 +66,19 @@ struct ChooseCityView: View {
         }
     }
     
+    private var notFoundView: some View {
+        VStack {
+            Spacer()
+            Text("Город не найден")
+                .font(.custom("SFPro-Bold", size: 24))
+                .opacity(viewModel.listIsEmpty ? 1 : 0)
+            Spacer()
+            Spacer()
+        }
+    }
+    
+    // MARK: - Sub Methods
+
     private func cityListView(_ list: [ChoosePlaceModel]) -> some View {
         List(list, id: \.self) { place in
             CityRowView( navigationPath: $navigationPath,
@@ -73,16 +92,5 @@ struct ChooseCityView: View {
         .scrollContentBackground(.hidden)
         .background(Color.background)
         .opacity(viewModel.listIsEmpty ? 0 : 1)
-    }
-    
-    private var notFoundView: some View {
-        VStack {
-            Spacer()
-            Text("Город не найден")
-                .font(.custom("SFPro-Bold", size: 24))
-                .opacity(viewModel.listIsEmpty ? 1 : 0)
-            Spacer()
-            Spacer()
-        }
     }
 }

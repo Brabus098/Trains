@@ -3,10 +3,14 @@ import Combine
 
 struct StoryLentView: View {
     
+    // MARK: - Properties
+
     var viewModel: StoriesLentViewModel
     @State private var timer: Timer.TimerPublisher?
     @State private var cancellable: Cancellable?
     
+    // MARK: - Body
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             StoryView(story: viewModel.currentStory)
@@ -42,6 +46,8 @@ struct StoryLentView: View {
         }
     }
     
+    // MARK: - Subviews
+
     private var tapZone: some View {
         HStack(spacing: 0) {
             Rectangle()

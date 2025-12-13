@@ -18,7 +18,7 @@ struct YourAppNameApp: App {
                 .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
         }
     }
-    
+
     private func configureTabBar() {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()

@@ -1,11 +1,6 @@
 //  ChoosePlaceModel.swift
-import Foundation
 
-//struct ChoosePlaceModel: Hashable, Identifiable, Sendable, Decodable {
-//    var id = UUID()
-//    var city: String
-//    var trainStations: [String]
-//}
+import Foundation
 
 struct ChoosePlaceModel: Hashable, Identifiable, Sendable, Decodable {
     var id = UUID()

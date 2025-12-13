@@ -4,10 +4,14 @@ import SwiftUI
 
 struct CustomTabView: View {
     
+    // MARK: - Properties
+    
     @State private var selectedTab: Int = 0
     @State private var hideTabBar = false
     @State var errorViewModel = ErrorViewModel(actualStatus: .NoProblems)
     @State var storiesService = StoriesService(model: StoriesModel())
+    
+    // MARK: - Body
     
     var body: some View {
         ZStack {
@@ -54,6 +58,8 @@ struct CustomTabView: View {
             }
         }
     }
+    
+    // MARK: - Sub Methods
     
     private func tabButton(imageActive: String,
                            imageInactive: String,

@@ -4,6 +4,8 @@ import SwiftUI
 
 struct FilterForDirection: View {
     
+    // MARK: - Properties
+
     @Binding var navigationPath: NavigationPath
     @Bindable var viewModel: FiltersViewModel
     
@@ -19,6 +21,8 @@ struct FilterForDirection: View {
         .padding(.horizontal)
     }
     
+    // MARK: - Subviews
+
     private var timeToStartTitle: some View {
         Text("Время отправления")
             .font(.custom("SFPro-Bold", size: 24))

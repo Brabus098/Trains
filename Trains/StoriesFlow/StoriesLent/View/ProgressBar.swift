@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct ProgressBar: View {
+    
     let numberOfSections: Int
     let progress: CGFloat
     

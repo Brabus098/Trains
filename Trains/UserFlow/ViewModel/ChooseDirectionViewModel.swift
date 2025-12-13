@@ -6,6 +6,8 @@ import Combine
 
 @MainActor @Observable class ChooseDirectionViewModel {
     
+    // MARK: - Properties
+    
     var finalDirectionTo: String?
     var finalDirectionFrom: String?
     var allDirectionAdds: Bool?
@@ -17,6 +19,8 @@ import Combine
         self.directionService = directionService
         addSubscribing()
     }
+    
+    // MARK: - Sub Methods
     
     private func addSubscribing() {
         directionService.finalDirectionToPublisher

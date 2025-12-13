@@ -6,6 +6,8 @@ import Combine
 
 @MainActor @Observable final class ChooseStationViewModel {
     
+    // MARK: - Properties
+    
     var listIsEmpty: Bool = false
     var stationList: [ChooseStationModel]?
     var needToShowAlert: Bool = false
@@ -13,7 +15,6 @@ import Combine
     
     private var cancellables = Set<AnyCancellable>()
     private var noInternetView: ErrorView?
-    
     private let directionService: DirectionsService
     
     init(directionService: DirectionsService) {
@@ -39,6 +40,8 @@ import Combine
             }
             .store(in: &cancellables)
     }
+    
+    // MARK: - Methods
     
     func filterStation(by word: String) {
         guard let stationList else { return }

@@ -5,6 +5,8 @@ import Combine
 
 @Observable final class StoriesService {
     
+    // MARK: - Properties
+
     private let model: StoriesModel
     private let mainImageViewArraySubject = CurrentValueSubject<[MainStoriesModel]?, Never>(nil)
     private let isCloseStoriesSubject = CurrentValueSubject<Bool, Never>(false)
@@ -29,6 +31,8 @@ import Combine
         loadStories()
     }
     
+    // MARK: - Subviews
+
     func closeStoriesIfNeed() {
         isCloseStoriesSubject.send(false)
     }

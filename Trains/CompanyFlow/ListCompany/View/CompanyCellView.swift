@@ -4,35 +4,19 @@ import SwiftUI
 
 struct CompanyCellView : View {
     
+    // MARK: - Properties
+
     @Binding var navigationPath: NavigationPath
     let viewModel: CompanyInfoViewModel
     
     let companyModel: CompanyModel
     
+    // MARK: - Body
+
     var body: some View {
         VStack {
             HStack {
-                AsyncImage(url: URL(string: companyModel.image)) { image in
-                    ZStack {
-                        Color.white
-                            .frame(width: 38, height: 38)
-                            .cornerRadius(12)
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 34, height: 34)
-                    }
-                    .frame(width: 38, height: 38)
-                    .cornerRadius(12)
-                } placeholder: {
-                    ZStack {
-                        Color.white
-                            .frame(width: 38, height: 38)
-                            .cornerRadius(12)
-                    }
-                    .frame(width: 38, height: 38)
-                    .cornerRadius(12)
-                }
+                logo
                 topLine
             }
             .padding(.horizontal)
@@ -45,6 +29,32 @@ struct CompanyCellView : View {
         .onTapGesture {
             viewModel.set(detail: companyModel)
             navigationPath.append("CompanyDetail")
+        }
+    }
+    
+    // MARK: - Subviews
+
+    private var logo: some View {
+        AsyncImage(url: URL(string: companyModel.image)) { image in
+            ZStack {
+                Color.white
+                    .frame(width: 38, height: 38)
+                    .cornerRadius(12)
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 34, height: 34)
+            }
+            .frame(width: 38, height: 38)
+            .cornerRadius(12)
+        } placeholder: {
+            ZStack {
+                Color.white
+                    .frame(width: 38, height: 38)
+                    .cornerRadius(12)
+            }
+            .frame(width: 38, height: 38)
+            .cornerRadius(12)
         }
     }
     

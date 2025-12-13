@@ -5,6 +5,8 @@ import Combine
 
 @Observable final class CompanyService {
     
+    // MARK: - Properties
+    
     private let buttonStatusSubject = CurrentValueSubject<Bool, Never>(false)
     private let cleanFilterButtonStateSubject = CurrentValueSubject<Bool, Never>(false)
     private let filteredCompaniesSubject = CurrentValueSubject<[CompanyModel]?, Never>(nil)
@@ -20,7 +22,8 @@ import Combine
     }
     var standardCompanies: [CompanyModel]?
     
-    
+    // MARK: - Methods
+
     func needChangeButton(status: Bool) {
         buttonStatusSubject.send(status)
     }

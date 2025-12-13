@@ -5,6 +5,8 @@ import Combine
 
 @Observable final class DirectionsService {
     
+    // MARK: - Properties
+
     private let networkService: NetworkService
     
     private let allDirectionAddsSubject = CurrentValueSubject<Bool?,Never>(nil)
@@ -76,6 +78,8 @@ import Combine
         self.networkService = NetworkService()
     }
     
+    // MARK: - Methods
+
     func swapDirections() {
         // Меняем направления местами
         let tempFrom = directionFrom
@@ -116,7 +120,18 @@ import Combine
         }
     }
     
-    // MARK: Network Service  methods
+    private func cleanStateErrorViews() {
+        needToShowErrorSubject.send(false)
+        needToShowNoInternetViewSubject.send(false)
+    }
+    
+    func cleanSchedule() {
+        needCleanScheduleSubject.send(false)
+        scheduleFromSubject.send(nil)
+    }
+    
+    // MARK: Network Service methods
+    
     func updateStationList() async {
         cleanStateErrorViews()
         
@@ -191,16 +206,6 @@ import Combine
         } catch {
             print("[DirectionsService]: set(selectedCompanies) - Неизвестная ошибка: \(error)")
         }
-    }
-    
-    private func cleanStateErrorViews() {
-        needToShowErrorSubject.send(false)
-        needToShowNoInternetViewSubject.send(false)
-    }
-    
-    func cleanSchedule() {
-        needCleanScheduleSubject.send(false)
-        scheduleFromSubject.send(nil)
     }
 }
 

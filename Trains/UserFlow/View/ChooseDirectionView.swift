@@ -4,6 +4,8 @@ import SwiftUI
 
 struct ChooseDirectionView: View {
     
+    // MARK: - Properties
+
     private let mainViewHeight: CGFloat = 128
     var chooseDirectionViewModel: ChooseDirectionViewModel
     
@@ -13,6 +15,8 @@ struct ChooseDirectionView: View {
     @State private var bottomButtonTitle = DirectionType.to.rawValue
     @State private var isSwapped = false
     
+    // MARK: - Body
+
     var body: some View {
         ZStack {
             HStack(spacing: 22) {
@@ -58,6 +62,8 @@ struct ChooseDirectionView: View {
                     }
     }
     
+    // MARK: - Subviews
+
     private var swapButton: some View {
         Button(action: {
             chooseDirectionViewModel.needSwapDirection()

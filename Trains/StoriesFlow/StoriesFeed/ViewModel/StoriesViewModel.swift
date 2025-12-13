@@ -5,6 +5,8 @@ import Combine
 
 @MainActor @Observable final class StoriesFeedViewModel {
     
+    // MARK: - Properties
+    
     var isCloseStories: Bool = false
     var mainImageViewArray: [MainStoriesModel]?
     
@@ -16,7 +18,9 @@ import Combine
         addSubscribing()
     }
     
-    func addSubscribing(){
+    // MARK: -  Methods
+    
+    private func addSubscribing(){
         service.isCloseStoriesPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] status in

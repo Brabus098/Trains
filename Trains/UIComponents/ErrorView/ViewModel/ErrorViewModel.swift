@@ -3,6 +3,7 @@
 import Observation
 
 @MainActor @Observable final class ErrorViewModel {
+    
     var actualStatus: ErrorType
 
     var imageName: String? {

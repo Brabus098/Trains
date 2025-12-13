@@ -6,6 +6,8 @@ import Combine
 
 @MainActor @Observable final class ChooseCityViewModel {
     
+    // MARK: - Properties
+
     var listIsEmpty: Bool = false
     var cityList: [ChoosePlaceModel]?
     
@@ -17,6 +19,8 @@ import Combine
         self.directionService = directionService
     }
     
+    // MARK: - Methods
+
     func needCityArray() async {
         cityList = model.getCityList()
         if let list = cityList, !list.isEmpty {
@@ -49,5 +53,3 @@ import Combine
         directionService.selectedCity = place
     }
 }
-
-
