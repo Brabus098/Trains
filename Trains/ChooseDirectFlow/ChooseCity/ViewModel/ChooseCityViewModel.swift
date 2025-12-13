@@ -4,7 +4,7 @@ import Foundation
 import Observation
 import Combine
 
-@MainActor @Observable class ChooseCityViewModel {
+@MainActor @Observable final class ChooseCityViewModel {
     
     var listIsEmpty: Bool = false
     var cityList: [ChoosePlaceModel]?

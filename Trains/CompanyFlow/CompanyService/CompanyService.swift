@@ -9,7 +9,6 @@ import Combine
     private let cleanFilterButtonStateSubject = CurrentValueSubject<Bool, Never>(false)
     private let filteredCompaniesSubject = CurrentValueSubject<[CompanyModel]?, Never>(nil)
     
-    
     var buttonStatusPublisher: AnyPublisher<Bool, Never> {
         buttonStatusSubject.eraseToAnyPublisher()
     }
