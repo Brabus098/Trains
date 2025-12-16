@@ -90,9 +90,22 @@ struct ChooseStationView: View {
                 Spacer()
                 Text("Станция не найдена")
                     .font(.custom("SFPro-Bold", size: 24))
+                    .scaleEffect(viewModel.listIsEmpty ? 1.0 : 0.8)
                     .opacity(viewModel.listIsEmpty ? 1 : 0)
                 Spacer()
                 Spacer()
+            }
+            .animation(
+                viewModel.listIsEmpty ?
+                    .bouncy(duration: 0.5) :
+                    .smooth(duration: 0.01),
+                value: viewModel.listIsEmpty
+            )
+            .onChange(of: viewModel.listIsEmpty) { _, newValue in
+                if newValue {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
             }
         }
     }
