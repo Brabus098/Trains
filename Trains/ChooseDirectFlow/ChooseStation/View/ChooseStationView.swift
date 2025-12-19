@@ -5,7 +5,7 @@ import SwiftUI
 struct ChooseStationView: View {
     
     // MARK: - Properties
-    
+    @State private var isLoading = false
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     var viewModel: ChooseStationViewModel
@@ -22,9 +22,14 @@ struct ChooseStationView: View {
                 contentView
             }
             .padding(.top, -10)
+            if isLoading {
+                LoadAnimationView()
+            }
         }
         .task {
+            isLoading = true
             await viewModel.needStationForCity()
+            isLoading = false
         }
     }
     
@@ -98,7 +103,7 @@ struct ChooseStationView: View {
             .animation(
                 viewModel.listIsEmpty ?
                     .bouncy(duration: 0.5) :
-                    .smooth(duration: 0.01),
+                        .smooth(duration: 0.01),
                 value: viewModel.listIsEmpty
             )
             .onChange(of: viewModel.listIsEmpty) { _, newValue in
