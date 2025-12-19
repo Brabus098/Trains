@@ -4,8 +4,12 @@ import SwiftUI
 
 struct SplashAnimationView: View {
 
-    @State private var animation: SplashAnimation = .start
+    // MARK: - Properties
 
+    @State private var animation: SplashAnimation = .start
+    
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
             Image("SplashScreen")

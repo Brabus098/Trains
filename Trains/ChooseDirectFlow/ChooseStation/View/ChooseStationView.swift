@@ -23,7 +23,7 @@ struct ChooseStationView: View {
             }
             .padding(.top, -10)
             if isLoading {
-                LoadAnimationView()
+                LoadAnimationView(newText: "Ищем платформу 9¾")
             }
         }
         .task {

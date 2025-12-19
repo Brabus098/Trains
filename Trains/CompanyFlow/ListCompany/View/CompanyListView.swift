@@ -9,7 +9,8 @@ struct CompanyListView: View {
     @Bindable var viewModel: CompanyListViewModel
     @Binding var navigationPath: NavigationPath
     @Binding var companyInfoViewModel: CompanyInfoViewModel
-    
+    @State private var isLoading = false
+
     private let columns = [
         GridItem(.flexible())
     ]
@@ -22,6 +23,10 @@ struct CompanyListView: View {
                 VStack {
                     directionText
                     companiesGrid
+                    
+                }
+                if isLoading {
+                    LoadAnimationView(newText: "Ищем вам компанию")
                 }
                 fallbackView
                 searchButton
@@ -33,7 +38,9 @@ struct CompanyListView: View {
         }
         .task {
             if viewModel.filterCompanies == nil {
+                isLoading = true
                 await viewModel.getNewSchedual()
+                isLoading = false
             }
         }
     }

@@ -80,17 +80,19 @@ import Combine
         let currentStoryIndex = Int(progress * CGFloat(storiesCount))
         let nextStoryIndex = currentStoryIndex + 1 < storiesCount ? currentStoryIndex + 1 : 0
         
-        if nextStoryIndex == 0 && currentStoryIndex != 0 && currentStoryGlobalIndex < stories.count - 1 {
-            changeStatus(index: currentStoryGlobalIndex)
-            currentStoryGlobalIndex += 1
-        } else if nextStoryIndex == 0 && currentStoryIndex != 0 && currentStoryGlobalIndex == stories.count - 1 {
-            changeStatus(index: currentStoryGlobalIndex)
-            closeStories()
-        } else if currentStoryGlobalIndex + 1 >= stories.count - 1 && storiesCount == 1 {
-            changeStatus(index: currentStoryGlobalIndex)
-            closeStories()
+        withAnimation(.easeInOut(duration: 0.3)) {
+            if nextStoryIndex == 0 && currentStoryIndex != 0 && currentStoryGlobalIndex < stories.count - 1 {
+                changeStatus(index: currentStoryGlobalIndex)
+                currentStoryGlobalIndex += 1
+            } else if nextStoryIndex == 0 && currentStoryIndex != 0 && currentStoryGlobalIndex == stories.count - 1 {
+                changeStatus(index: currentStoryGlobalIndex)
+                closeStories()
+            } else if currentStoryGlobalIndex + 1 >= stories.count - 1 && storiesCount == 1 {
+                changeStatus(index: currentStoryGlobalIndex)
+                closeStories()
+            }
+            progress = CGFloat(nextStoryIndex) / CGFloat(storiesCount)
         }
-        progress = CGFloat(nextStoryIndex) / CGFloat(storiesCount)
     }
     
     func prevStory() {
@@ -98,14 +100,17 @@ import Combine
         let currentStoryIndex = Int(progress * CGFloat(storiesCount))
         let prevStoryIndex = currentStoryIndex - 1 > 0 ? currentStoryIndex - 1 : 0
         
-        progress = CGFloat(prevStoryIndex) / CGFloat(storiesCount)
-        
-        if currentStoryIndex > 0 {
-        } else if currentStoryIndex <= 0  && currentStoryGlobalIndex > 0 {
-            currentStoryGlobalIndex -= 1
-        } else if currentStoryIndex == 0 && currentStoryGlobalIndex == 0 {
-            service.needUpdateActualStory(globalNumber: currentStoryGlobalIndex)
+        withAnimation(.easeInOut(duration: 0.3)) {
+            progress = CGFloat(prevStoryIndex) / CGFloat(storiesCount)
+            
+            if currentStoryIndex > 0 {
+            } else if currentStoryIndex <= 0  && currentStoryGlobalIndex > 0 {
+                currentStoryGlobalIndex -= 1
+            } else if currentStoryIndex == 0 && currentStoryGlobalIndex == 0 {
+                service.needUpdateActualStory(globalNumber: currentStoryGlobalIndex)
+            }
         }
+  
     }
     
     func closeStories() {

@@ -4,8 +4,13 @@ import SwiftUI
 
 struct LoadAnimationView: View {
     
-    @State private var startAnimation = false
+    // MARK: - Properties
     
+    @State private var startAnimation = false
+    let newText: String
+    
+    // MARK: - Body
+
     var body: some View {
         VStack {
             plainImage
@@ -13,6 +18,8 @@ struct LoadAnimationView: View {
         }
     }
     
+    // MARK: - Subviews
+
     private var plainImage: some View {
         Image("plain")
             .resizable()
@@ -27,8 +34,9 @@ struct LoadAnimationView: View {
     }
     
     private var text: some View {
-        Text("Ищем варианты")
+        Text(newText)
             .font(.custom("SFPro-Bold", size: 24))
+            .multilineTextAlignment(.center)
             .foregroundColor(startAnimation ? .black : .blueUniversal)
             .animation(
                 .linear(duration: 2)

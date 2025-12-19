@@ -1,6 +1,5 @@
 //  SplashAnimation.swift
 
-import Foundation
 import SwiftUI
 
 enum SplashAnimation {
