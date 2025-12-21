@@ -101,3 +101,4 @@ struct CompanyCellView : View {
         .padding(.bottom, 12)
     }
 }
+

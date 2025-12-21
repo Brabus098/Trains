@@ -9,7 +9,8 @@ struct CompanyListView: View {
     @Bindable var viewModel: CompanyListViewModel
     @Binding var navigationPath: NavigationPath
     @Binding var companyInfoViewModel: CompanyInfoViewModel
-    
+    @State private var isLoading = false
+
     private let columns = [
         GridItem(.flexible())
     ]
@@ -18,23 +19,14 @@ struct CompanyListView: View {
 
     var body: some View {
         ZStack {
-            contentView
-        }
-        .task {
-            if viewModel.filterCompanies == nil {
-                await viewModel.getNewSchedual()
-            }
-        }
-    }
-    
-    // MARK: - Subviews
-
-    private var contentView: some View {
-        VStack {
             if !viewModel.needToShowAlert && !viewModel.needToShowErrorView {
                 VStack {
                     directionText
                     companiesGrid
+                    
+                }
+                if isLoading {
+                    LoadAnimationView(newText: "Ищем вам компанию")
                 }
                 fallbackView
                 searchButton
@@ -44,7 +36,16 @@ struct CompanyListView: View {
                 ErrorView(viewModel: ErrorViewModel(actualStatus: .ServerError))
             }
         }
+        .task {
+            if viewModel.filterCompanies == nil {
+                isLoading = true
+                await viewModel.getNewSchedual()
+                isLoading = false
+            }
+        }
     }
+    
+    // MARK: - Subviews
     
     private var directionText: some View {
         if let to = viewModel.to,
@@ -104,14 +105,27 @@ struct CompanyListView: View {
         ZStack {
             Color.clear
             
-            if let companiesList = viewModel.filterCompanies, companiesList.isEmpty {
+            // Показываем только когда массив есть И он пустой
+            if let companies = viewModel.filterCompanies, companies.isEmpty {
                 VStack {
                     Spacer()
                     Text("Вариантов нет")
                         .font(.custom("SFPro-Bold", size: 24))
                     Spacer()
                 }
+                .transition(
+                    .asymmetric(
+                        insertion: .opacity.combined(with: .scale(scale: 0.8)),
+                        removal: .opacity
+                    )
+                )
+                .animation(.bouncy(duration: 0.5), value: companies.isEmpty)
+                .onAppear {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
             }
         }
     }
 }
+

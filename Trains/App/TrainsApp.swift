@@ -3,20 +3,20 @@
 import SwiftUI
 
 @main
-struct YourAppNameApp: App {
+struct TrainsApp: App {
     
     private var themeManager = ThemeManager()
-
+    
     init() {
         configureTabBar()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(themeManager)
-                .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
-        }
+                ContentView()
+                    .environment(themeManager)
+                    .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
+            }
     }
 
     private func configureTabBar() {

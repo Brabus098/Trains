@@ -50,7 +50,7 @@ struct MainScreenView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             VStack {
-                StoriesFeedView(hideTabBar: $hideTabBar, navigationPath: $navigationPath, viewModel: storiesFeedViewModel)
+                StoriesFeedView(hideTabBar: $hideTabBar, navigationPath: $navigationPath, viewModel: storiesFeedViewModel, story: Story(image: ""))
                 
                 ChooseDirectionView(chooseDirectionViewModel: chooseDirectionViewModel, navigationPath: $navigationPath)
                 

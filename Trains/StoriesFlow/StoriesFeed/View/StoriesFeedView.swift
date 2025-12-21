@@ -9,6 +9,7 @@ struct StoriesFeedView: View {
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     @State var viewModel: StoriesFeedViewModel
+    @State var story: Story
     
     // MARK: - Body
 
@@ -34,7 +35,7 @@ struct StoriesFeedView: View {
             
             if let imageArray = viewModel.mainImageViewArray {
                 ForEach(imageArray, id: \.self) { imageName in
-                    StoriesCellView(storiesType: MainStoriesModel(image: imageName.image, borderStatus: imageName.borderStatus))
+                    StoriesCellView(storiesType: MainStoriesModel(image: imageName.image, borderStatus: imageName.borderStatus), textForImage: story)
                         .onTapGesture {
                             viewModel.tapOnStories(with: imageName.image)
                             navigationPath.append("Stories")

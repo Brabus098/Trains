@@ -8,14 +8,18 @@ struct StoryLentView: View {
     var viewModel: StoriesLentViewModel
     @State private var timer: Timer.TimerPublisher?
     @State private var cancellable: Cancellable?
+    @State var showNewStory = false
     
     // MARK: - Body
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            StoryView(story: viewModel.currentStory)
-                .allowsHitTesting(true)
-            
+            if showNewStory {
+                StoryView(story: viewModel.currentStory)
+                    .allowsHitTesting(true)
+                .transition(.scale(scale: 0.8).combined(with: .opacity))
+            }
+
             ProgressBar(numberOfSections: viewModel.numberOfSections,
                         progress: viewModel.progress)
             .padding(.init(top: 28, leading: 12, bottom: 12, trailing: 12))
@@ -26,6 +30,9 @@ struct StoryLentView: View {
                 .padding(.trailing, 12)
         }
         .onAppear {
+            withAnimation(.easeIn(duration: 0.2)) {
+                            showNewStory = true
+                        }
             viewModel.setConfiguration()
             viewModel.createTimer()
             timer = viewModel.timer

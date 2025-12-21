@@ -5,7 +5,7 @@ import SwiftUI
 struct ChooseStationView: View {
     
     // MARK: - Properties
-    
+    @State private var isLoading = false
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     var viewModel: ChooseStationViewModel
@@ -22,9 +22,14 @@ struct ChooseStationView: View {
                 contentView
             }
             .padding(.top, -10)
+            if isLoading {
+                LoadAnimationView(newText: "Ищем платформу 9¾")
+            }
         }
         .task {
+            isLoading = true
             await viewModel.needStationForCity()
+            isLoading = false
         }
     }
     
@@ -90,9 +95,22 @@ struct ChooseStationView: View {
                 Spacer()
                 Text("Станция не найдена")
                     .font(.custom("SFPro-Bold", size: 24))
+                    .scaleEffect(viewModel.listIsEmpty ? 1.0 : 0.8)
                     .opacity(viewModel.listIsEmpty ? 1 : 0)
                 Spacer()
                 Spacer()
+            }
+            .animation(
+                viewModel.listIsEmpty ?
+                    .bouncy(duration: 0.5) :
+                        .smooth(duration: 0.01),
+                value: viewModel.listIsEmpty
+            )
+            .onChange(of: viewModel.listIsEmpty) { _, newValue in
+                if newValue {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
             }
         }
     }

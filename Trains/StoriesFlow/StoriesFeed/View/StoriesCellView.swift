@@ -5,7 +5,7 @@ struct StoriesCellView: View {
     // MARK: - Properties
     
     let storiesType: MainStoriesModel
-    let textForImage = "Text Text Text Text Text Text Text Text Text"
+    let textForImage: Story
     
     // MARK: - Body
     
@@ -20,7 +20,7 @@ struct StoriesCellView: View {
 
     private var text: some View {
         VStack {
-            Text(textForImage)
+            Text(textForImage.title)
                 .font(.custom("SFPro-Regular", size: 12))
                 .foregroundStyle(.white)
                 .frame(alignment: .bottom)

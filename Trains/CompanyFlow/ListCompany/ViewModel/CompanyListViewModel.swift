@@ -8,7 +8,6 @@ import Combine
     
     // MARK: - Properties
     
-    private let model: CompanyListModel
     private let service: CompanyService
     private let directionService: DirectionsService
     private var cancelLables = Set<AnyCancellable>()
@@ -21,7 +20,6 @@ import Combine
     var visibleButtonStatus = false
     
     init(service: CompanyService, directionService: DirectionsService) {
-        self.model = CompanyListModel()
         self.service = service
         self.directionService = directionService
         setupSubscriptions()
