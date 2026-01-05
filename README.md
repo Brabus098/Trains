@@ -9,16 +9,14 @@
 **Trains** - современное iOS-приложение для поиска и планирования путешествий с интеграцией Яндекс.Расписаний. Умный помощник для комфортного планирования поездок на любом транспорте.
 
 <p align="center">
-  
-  <img src="https://github.com/Brabus098/Trains/blob/master/Mockup.png?raw=true" width="1500" alt="Главный экран">
-  <!-- <img src="https://github.com/Brabus098/Trains/blob/master/MainScreen.png?raw=true" width="200" alt="Главный экран">
+  <img src="https://github.com/Brabus098/Trains/blob/master/MainScreen.png?raw=true" width="200" alt="Главный экран">
   <img src="https://github.com/Brabus098/Trains/blob/master/ChooseCity.png?raw=true" width="200" alt="Выбор города">
   <img src="https://github.com/Brabus098/Trains/blob/master/ListCompany.png?raw=true" width="200" alt="Список перевозчиков">
   <img src="https://github.com/Brabus098/Trains/blob/master/CompanyInfo.png?raw=true" width="200" alt="Информация о перевозчике">
   <img src="https://github.com/Brabus098/Trains/blob/master/Filters.png?raw=true" width="200" alt="Фильтры">
   <img src="https://github.com/Brabus098/Trains/blob/master/Stories.png?raw=true" width="200" alt="Истории">
   <img src="https://github.com/Brabus098/Trains/blob/master/Settings.png?raw=true" width="200" alt="Настройки">
-  <img src="https://github.com/Brabus098/Trains/blob/master/ServerError.png?raw=true" width="200" alt="Ошибка сервера"> -->
+  <img src="https://github.com/Brabus098/Trains/blob/master/ServerError.png?raw=true" width="200" alt="Ошибка сервера">
 </p>
 
 ## 🚀 Возможности
