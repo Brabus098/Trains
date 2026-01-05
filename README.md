@@ -9,7 +9,7 @@
 **Trains** - современное iOS-приложение для поиска и планирования путешествий с интеграцией Яндекс.Расписаний. Умный помощник для комфортного планирования поездок на любом транспорте.
 
 <p align="center">
-  <img src="https://github.com/Brabus098/Mockup/blob/master/MainScreen.png?raw=true" width="200" alt="Главный экран">
+  <img src="https://github.com/Brabus098/Trains/blob/master/Mockup?raw=true" width="200" alt="Главный экран">
   <!-- <img src="https://github.com/Brabus098/Trains/blob/master/MainScreen.png?raw=true" width="200" alt="Главный экран">
   <img src="https://github.com/Brabus098/Trains/blob/master/ChooseCity.png?raw=true" width="200" alt="Выбор города">
   <img src="https://github.com/Brabus098/Trains/blob/master/ListCompany.png?raw=true" width="200" alt="Список перевозчиков">
