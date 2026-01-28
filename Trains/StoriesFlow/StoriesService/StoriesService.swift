@@ -6,7 +6,7 @@ import Combine
 @Observable final class StoriesService {
     
     // MARK: - Properties
-
+    
     private let model: StoriesModel
     private let mainImageViewArraySubject = CurrentValueSubject<[MainStoriesModel]?, Never>(nil)
     private let isCloseStoriesSubject = CurrentValueSubject<Bool, Never>(false)
@@ -32,7 +32,7 @@ import Combine
     }
     
     // MARK: - Subviews
-
+    
     func closeStoriesIfNeed() {
         isCloseStoriesSubject.send(false)
     }
@@ -60,13 +60,14 @@ import Combine
         }
     }
     
-    func changeStatusFor(story: Int) {
-        var actualArray = mainImageViewArray
+    func changeStatusForViewedStories(story: Int) {
+        let actualArray = mainImageViewArray
         
         let newArray = actualArray?.map { storyModel in
+            
             storyModel.image == String(story + (actualNumber ?? 0))
             ? MainStoriesModel(image: storyModel.image, borderStatus: false)
-            : storyModel
+            : storyModel // 1 == 1
         }
         mainImageViewArraySubject.send(newArray)
     }
