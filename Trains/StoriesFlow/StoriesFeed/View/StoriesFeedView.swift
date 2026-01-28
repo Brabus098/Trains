@@ -5,14 +5,14 @@ import SwiftUI
 struct StoriesFeedView: View {
     
     // MARK: - Properties
-
+    
     @Binding var hideTabBar: Bool
     @Binding var navigationPath: NavigationPath
     @State var viewModel: StoriesFeedViewModel
     @State var story: Story
     
     // MARK: - Body
-
+    
     var body: some View {
         NavigationStack(path: $navigationPath) {
             ScrollView(.horizontal) {
@@ -20,16 +20,22 @@ struct StoriesFeedView: View {
             }
             .frame(maxHeight: 160)
             .scrollIndicators(.hidden)
-            .onChange(of: viewModel.isCloseStories) { _, newValue in
-                if newValue {
-                    navigationPath.removeLast()
+            .onChange(of: viewModel.isCloseStories) { oldValue, newValue in
+                
+                if !oldValue && newValue {
+                    if !navigationPath.isEmpty {
+                        
+                        DispatchQueue.main.async {
+                            navigationPath.removeLast()
+                        }
+                    }
                 }
             }
         }
     }
     
     // MARK: - Subviews
-
+    
     private var lentWithStories: some View {
         LazyHStack(spacing: 10) {
             
